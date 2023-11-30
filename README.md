@@ -6,6 +6,10 @@ This template provides a starting point for creating React projects with TypeScr
 
 Live app: [https://xmas-hack-2023.netlify.app/](https://xmas-hack-2023.netlify.app/)
 
+Github repo: [https://github.com/thathurtabit/xmas-hack-2023](https://github.com/thathurtabit/xmas-hack-2023)
+
+
+
 ## Overview
 
 This template allows you to quickly set up a React project with TypeScript, Tailwind CSS, and Vite. It provides a modern development environment with features such as hot module replacement and fast refresh, making it easy to develop and customize your React applications.
