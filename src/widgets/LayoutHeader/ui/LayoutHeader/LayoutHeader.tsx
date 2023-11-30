@@ -10,11 +10,10 @@ const LayoutHeader: FC = () => {
           <Menu
             links={[
               { name: "Homepage", href: "/" },
-              { name: "Portfolio", href: "/portfolio" },
               { name: "About", href: "/about" },
             ]}
           />
-          <Logo logoName={"daisyUI"} />
+          <Logo logoName={"Xmas Hack 2023"} />
           <div className="navbar-end">
             <button className="btn-ghost btn-circle btn">
               <svg

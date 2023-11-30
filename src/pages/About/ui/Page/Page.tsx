@@ -19,7 +19,7 @@ const Home: FC = () => {
               className="max-w-sm rounded-lg shadow-2xl"
             />
             <div>
-              <h1 className="text-5xl font-bold">Welcome</h1>
+              <h1 className="text-5xl font-bold">About Page</h1>
               <h2 className="text-5xl font-bold">{helloWorld ? 'HELLO WORLD! 👋' : 'Goodbye cruel world 😢'}</h2>
               <p className="py-5">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia
