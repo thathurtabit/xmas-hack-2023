@@ -1,6 +1,10 @@
 # TypeScript React Tailwind Vite Template
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4f5237ba-bbae-4c52-829a-dfd3da937719/deploy-status)](https://app.netlify.com/sites/xmas-hack-2023/deploys)
+
 This template provides a starting point for creating React projects with TypeScript, Tailwind CSS, and Vite.
+
+Live app: [https://xmas-hack-2023.netlify.app/](https://xmas-hack-2023.netlify.app/)
 
 ## Overview
 
