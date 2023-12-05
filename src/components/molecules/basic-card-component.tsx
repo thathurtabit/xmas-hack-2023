@@ -76,7 +76,7 @@ export const BasicCarCard = ({
       onClick={() => {
         handleMoneyAmount();
         setSelected((prevState) => {
-          if (prevState && price < moneyAmount) {
+          if (prevState) {
             removeCarFromList(id);
           }
           return price < moneyAmount;
