@@ -6,30 +6,51 @@ import {
   XmasHackDispatchContext,
   XmasHackStateContext,
 } from "@/context/context/context";
-import { useContext } from "react";
+import { SetStateAction, useContext, useEffect, useState } from "react";
 
 export const MainGame = () => {
+  const [cars, setCars] = useState<SetStateAction<{ [num: string]: number }>[]>(
+    [],
+  );
+
   const dispatch = useContext(XmasHackDispatchContext);
   const { helloWorld } = useContext(XmasHackStateContext);
   const handleHelloWorld = () => {
     dispatch(setHelloWorld(!helloWorld));
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCars((prevCars) => {
+        if (prevCars.length <= 4) {
+          return prevCars.concat({
+            key: Math.floor(Math.random() * 100),
+            starting: 55,
+            max: 65,
+            min: 45,
+          });
+        }
+        return prevCars;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <Header />
-        <div>
-            <button className="btn-primary btn" onClick={handleHelloWorld}>
-                Value of Hello World: "{helloWorld.toString()}" - click to change
-            </button>
+      <div>
+        <button className="btn-primary btn" onClick={handleHelloWorld}>
+          Value of Hello World: "{helloWorld.toString()}" - click to change
+        </button>
 
-            <div className="flex justify-center space-x-4">
-                <BasicCarCard starting={55} max={65} min={42} />
-                <BasicCarCard starting={62} max={69} min={49} />
-                <BasicCarCard starting={23} max={10} min={45} />
-            </div>
+        <div className="grid grid-cols-6 gap-2">
+          {cars.map((car) => {
+            return <BasicCarCard {...car} />;
+          })}
         </div>
-        <Footer />
+      </div>
+      <Footer />
     </>
   );
 };

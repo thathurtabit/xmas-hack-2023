@@ -23,6 +23,7 @@ export const BasicCarCard = ({
   const [actionType, setactionType] = useState("increase");
   const [selected, setSelected] = useState(false);
   const [remove, setRemove] = useState(false);
+
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const dispatch = useContext(XmasHackDispatchContext);
   const { moneyAmount } = useContext(XmasHackStateContext);
