@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useRef, useContext, useMemo } from "react";
 import { motion } from "framer-motion";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import cn from "classnames";
@@ -70,8 +70,18 @@ export const BasicCarCard = ({
     }
   };
 
+  const initialPosition = useMemo(() => Math.round(Math.random()) * 100, []);
+  const finalPosition = useMemo(() => 100 - initialPosition, [initialPosition]);
+
   return (
-    <button
+    <motion.button
+      className="absolute"
+      initial={{ x: `${initialPosition}vw`, y: initialPosition ? 400 : 0 }}
+      animate={{ x: `${finalPosition}vw` }}
+      transition={{
+        x: { duration: 5, ease: "linear" },
+        ease: "linear",
+      }}
       onClick={() => {
         handleMoneyAmount();
         setSelected((prevState) => {
@@ -122,6 +132,6 @@ export const BasicCarCard = ({
           </motion.div>
         )}
       </div>
-    </button>
+    </motion.button >
   );
 };
