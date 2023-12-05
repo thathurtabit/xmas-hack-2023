@@ -1,48 +1,59 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import { ButtonProps } from "./button.types";
+import { IconLoading } from "@/components/icons/loading/loading";
 
 const getButtonSizeClasses = (size: ButtonProps["size"]) => {
   switch (size) {
     case "small":
-      return "text-sm";
-    case "medium":
-      return "text-md";
+      return "text-sm btn-sm";
     case "large":
-      return "text-lg";
+      return "text-lg btn-lg";
+    case "xlarge":
+      return "text-xl btn-xl";
     default:
       return "text-md";
   }
 };
 
-const getVariantClasses = (isPrimary: ButtonProps["primary"]) => {
-  switch (isPrimary) {
-    case true:
-      return "bg-white text-black";
+const getVariantClasses = (variant: ButtonProps["variant"]) => {
+  switch (variant) {
+    case "neutral":
+      return "btn btn-neutral";
+    case "primary":
+      return "btn btn-primary";
+    case "secondary":
+      return "btn btn-secondary";
+    case "accent":
+      return "btn btn-accent";
+    case "ghost":
+      return "btn btn-ghost";
+    case "link":
+      return "btn btn-link";
     default:
-      return "bg-black text-white";
+      return "btn";
   }
 };
 
 /**
  * Primary UI component for user interaction
  */
-export const Button: FC<ButtonProps> = ({
-  primary = true,
+export const Button: FC<PropsWithChildren<ButtonProps>> = ({
+  variant = "default",
   size = "medium",
-  backgroundColor,
-  label,
+  loading = false,
+  children,
   ...props
-}: ButtonProps) => {
+}) => {
   const buttonSizeClasses = getButtonSizeClasses(size);
-  const variantClasses = getVariantClasses(primary);
+  const variantClasses = getVariantClasses(variant);
   return (
     <button
       type="button"
-      className={`bg-transparent ${buttonSizeClasses} ${variantClasses}`}
-      style={{ backgroundColor }}
+      className={`${buttonSizeClasses} ${variantClasses}`}
       {...props}
     >
-      {label}
+      {loading ? <IconLoading className="animate-spin" /> : null}
+      {children}
     </button>
   );
 };
