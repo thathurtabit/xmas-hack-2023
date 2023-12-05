@@ -20,7 +20,7 @@ export const BasicCarCard = ({
   [value: string]: number;
 }) => {
   const [price, setPrice] = useState(starting);
-  const [actionType, setactionType] = useState("increase");
+  const [actionType, setactionType] = useState((Math.random() * 2 > 1) ? "increase" : "decrease");
   const [selected, setSelected] = useState(false);
   const [remove, setRemove] = useState(false);
 

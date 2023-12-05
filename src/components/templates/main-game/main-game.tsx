@@ -14,7 +14,7 @@ export const MainGame = () => {
   );
 
   const dispatch = useContext(XmasHackDispatchContext);
-  const { helloWorld } = useContext(XmasHackStateContext);
+  const { helloWorld, moneyAmount } = useContext(XmasHackStateContext);
   const handleHelloWorld = () => {
     dispatch(setHelloWorld(!helloWorld));
   };
@@ -23,18 +23,21 @@ export const MainGame = () => {
     const interval = setInterval(() => {
       setCars((prevCars) => {
         if (prevCars.length <= 4) {
+          const starting = Math.floor(Math.random() * (moneyAmount * 0.6)) + (moneyAmount * 0.6)
+
           return prevCars.concat({
+            // TODO: use better key than random number
             key: Math.floor(Math.random() * 100),
-            starting: 55,
-            max: 65,
-            min: 45,
+            starting,
+            max: Math.floor(starting * 1.1),
+            min: Math.floor(starting * 0.9),
           });
         }
         return prevCars;
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [moneyAmount]);
 
   return (
     <>
