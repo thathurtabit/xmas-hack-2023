@@ -8,6 +8,7 @@ import {
 } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
+import { priceChangeIntervalMS } from "@/settings/settings";
 
 enum ActionTypes {
   INCREASE = "increase",
@@ -52,7 +53,7 @@ export const BasicCarCard = ({
           ? prevState + 1
           : prevState - 1;
       });
-    }, 1000);
+    }, priceChangeIntervalMS);
 
     return () => {
       clearInterval(timeout.current as ReturnType<typeof setInterval>);

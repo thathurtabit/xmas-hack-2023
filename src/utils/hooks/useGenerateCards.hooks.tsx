@@ -1,4 +1,9 @@
 import { XmasHackStateContext } from "@/context/context/context";
+import {
+  generateNewCardIntervalMS,
+  priceChangeMultiplierLOWER,
+  priceChangeMultiplierUPPER,
+} from "@/settings/settings";
 import { useContext, useEffect, useState } from "react";
 
 export interface CarTypes {
@@ -24,13 +29,13 @@ export const useGenerateCards = () => {
             // TODO: use better key than random number
             id: Math.floor(Math.random() * 100) * (starting * 1.1),
             starting,
-            max: Math.floor(starting * 1.1),
-            min: Math.floor(starting * 0.9),
+            max: Math.floor(starting * priceChangeMultiplierUPPER),
+            min: Math.floor(starting * priceChangeMultiplierLOWER),
           });
         }
         return prevCars;
       });
-    }, 1000);
+    }, generateNewCardIntervalMS);
     return () => clearInterval(interval);
   }, [moneyAmount, cars]);
 
