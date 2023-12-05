@@ -19,6 +19,12 @@ export const globalReducer = (
         timeDays: state.timeDays + 1,
       };
     }
+    case EAction.SET_MONEY_AMOUNT: {
+      return {
+        ...state,
+        moneyAmount: payload as number
+      }
+    }
     default: {
       return state;
     }

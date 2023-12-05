@@ -1,6 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import cn from "classnames";
+import {
+  XmasHackDispatchContext,
+  XmasHackStateContext,
+} from "@/context/context/context";
+import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 
 enum ActionTypes {
   INCREASE = "increase",
@@ -18,6 +23,8 @@ export const BasicCarCard = ({
   const [actionType, setactionType] = useState("increase");
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const [selected, setSelected] = useState(false);
+  const dispatch = useContext(XmasHackDispatchContext);
+  const { moneyAmount } = useContext(XmasHackStateContext);
 
   useEffect(() => {
     timeout.current = setInterval(() => {
@@ -40,10 +47,19 @@ export const BasicCarCard = ({
     };
   }, [actionType, max, min]);
 
+  const handleMoneyAmount = () => {
+    if (!selected) {
+      dispatch(ammendMoneyAmount(moneyAmount - price));
+    }
+    if (selected) {
+      dispatch(ammendMoneyAmount(moneyAmount + price));
+    }
+  };
+
   return (
     <button
       onClick={() => {
-        console.log(price);
+        handleMoneyAmount();
         setSelected(true);
       }}
     >
