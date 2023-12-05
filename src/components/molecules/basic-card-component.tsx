@@ -107,7 +107,11 @@ export const BasicCarCard = ({
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: -50 }}
-            transition={{ duration: 1.5, type: "spring", ease: "easeOut" }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              ease: "easeOut",
+            }}
             onAnimationComplete={() => {
               setCanAfford(true);
             }}
