@@ -6,7 +6,7 @@ import { About } from "@/pages/About";
 
 const App: FC = () => {
   return (
-    <>
+    <div className="font-raleway">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -17,7 +17,7 @@ const App: FC = () => {
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 };
 
