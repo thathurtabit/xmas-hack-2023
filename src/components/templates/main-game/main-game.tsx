@@ -6,38 +6,17 @@ import {
   XmasHackDispatchContext,
   XmasHackStateContext,
 } from "@/context/context/context";
-import { SetStateAction, useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
 
 export const MainGame = () => {
-  const [cars, setCars] = useState<SetStateAction<{ [num: string]: number }>[]>(
-    [],
-  );
-
   const dispatch = useContext(XmasHackDispatchContext);
-  const { helloWorld, moneyAmount } = useContext(XmasHackStateContext);
+  const { helloWorld } = useContext(XmasHackStateContext);
   const handleHelloWorld = () => {
     dispatch(setHelloWorld(!helloWorld));
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCars((prevCars) => {
-        if (prevCars.length <= 4) {
-          const starting = Math.floor(Math.random() * (moneyAmount * 0.6)) + (moneyAmount * 0.6)
-
-          return prevCars.concat({
-            // TODO: use better key than random number
-            key: Math.floor(Math.random() * 100),
-            starting,
-            max: Math.floor(starting * 1.1),
-            min: Math.floor(starting * 0.9),
-          });
-        }
-        return prevCars;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [moneyAmount]);
+  const { removeCarFromList, cars } = useGenerateCards();
 
   return (
     <>
@@ -49,7 +28,13 @@ export const MainGame = () => {
 
         <div className="grid grid-cols-6 gap-2">
           {cars.map((car) => {
-            return <BasicCarCard {...car} />;
+            return (
+              <BasicCarCard
+                {...car}
+                removeCarFromList={removeCarFromList}
+                key={car.id}
+              />
+            );
           })}
         </div>
       </div>

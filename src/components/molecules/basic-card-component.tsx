@@ -12,17 +12,26 @@ enum ActionTypes {
   DECREASE = "decrease",
 }
 
+interface BasicCardTypes {
+  starting: number;
+  max: number;
+  min: number;
+  id: number;
+  removeCarFromList: (val: number) => void;
+}
+
 export const BasicCarCard = ({
   starting,
   max,
   min,
-}: {
-  [value: string]: number;
-}) => {
+  id,
+  removeCarFromList,
+}: BasicCardTypes) => {
   const [price, setPrice] = useState(starting);
-  const [actionType, setactionType] = useState((Math.random() * 2 > 1) ? "increase" : "decrease");
+  const [actionType, setactionType] = useState(
+    Math.random() * 2 > 1 ? "increase" : "decrease",
+  );
   const [selected, setSelected] = useState(false);
-  const [remove, setRemove] = useState(false);
 
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const dispatch = useContext(XmasHackDispatchContext);
@@ -58,17 +67,13 @@ export const BasicCarCard = ({
     }
   };
 
-  if (remove) {
-    return null;
-  }
-
   return (
     <button
       onClick={() => {
         handleMoneyAmount();
         setSelected((prevState) => {
           if (prevState) {
-            setRemove(true);
+            removeCarFromList(id);
           }
           return !prevState;
         });
