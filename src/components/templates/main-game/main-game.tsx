@@ -19,7 +19,6 @@ export const MainGame = () => {
     <>
       <Header />
         <div>
-            <h1>This is the main game screen</h1>
             <button className="btn-primary btn" onClick={handleHelloWorld}>
                 Value of Hello World: "{helloWorld.toString()}" - click to change
             </button>
