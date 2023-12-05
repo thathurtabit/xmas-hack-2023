@@ -7,7 +7,7 @@ import { FC, useContext } from "react";
 
 const Home: FC = () => {
   const dispatch = useContext(XmasHackDispatchContext);
-  const { helloWorld } = useContext(XmasHackStateContext);
+  const { helloWorld, timeDays } = useContext(XmasHackStateContext);
 
   const handleHelloWorld = () => {
     dispatch(setHelloWorld(!helloWorld));
@@ -15,8 +15,9 @@ const Home: FC = () => {
   return (
     <>
       <section className="min-h-[calc(100vh-64px)] bg-base-200">
+        <div>{timeDays} days</div>
         <button className="btn-primary btn" onClick={handleHelloWorld}>
-          Value of Hello World: "{helloWorld.toString()}"" - click to change
+          Value of Hello World: "{helloWorld.toString()}" - click to change
         </button>
       </section>
     </>

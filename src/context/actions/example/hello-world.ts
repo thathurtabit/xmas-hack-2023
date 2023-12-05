@@ -7,3 +7,8 @@ export const setHelloWorld = (
   type: EAction.SET_HELLO_WORLD,
   payload,
 });
+
+export const incrementTimeDays = (
+): IXmasHackContextAction => ({
+  type: EAction.INCREMENT_TIME_DAYS,
+});

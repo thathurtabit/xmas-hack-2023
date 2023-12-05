@@ -13,6 +13,12 @@ export const globalReducer = (
         helloWorld: payload as boolean,
       };
     }
+    case EAction.INCREMENT_TIME_DAYS: {
+      return {
+        ...state,
+        timeDays: state.timeDays + 1,
+      };
+    }
     default: {
       return state;
     }

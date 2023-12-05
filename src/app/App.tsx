@@ -1,10 +1,18 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "@/app/Layout";
 import { Home, NoMatch } from "@/pages";
 import { About } from "@/pages/About";
+import { XmasHackDispatchContext } from "@/context/context/context";
+import { EAction } from "@/context/actions/action.types";
 
 const App: FC = () => {
+  const dispatch = useContext(XmasHackDispatchContext);
+
+  setInterval(() => {
+    dispatch({ type: EAction.INCREMENT_TIME_DAYS });
+  }, 1000);
+
   return (
     <>
       <Routes>
