@@ -1,4 +1,4 @@
-import { MainGame } from "@/components/templates/main-game";
+import { MainGame } from "@/components/templates/main-game/main-game";
 import { FC } from "react";
 
 const Home: FC = () => {

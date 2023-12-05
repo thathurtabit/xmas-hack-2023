@@ -1,4 +1,5 @@
 import { TimeCounter } from "@/components/atoms/counter/counter";
+import { Header } from "@/components/molecules/header/header";
 import { setHelloWorld } from "@/context/actions/example/hello-world";
 import {
   XmasHackDispatchContext,
@@ -15,6 +16,7 @@ export const MainGame = () => {
 
     return (
         <>
+            <Header />
             <TimeCounter />
             <h1>This is the main game screen</h1>
             <button className="btn-primary btn" onClick={handleHelloWorld}>
