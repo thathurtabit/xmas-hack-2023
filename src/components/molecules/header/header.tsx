@@ -1,8 +1,9 @@
 export const Header = () => {
     return (
-        <header>
-            <p>Goal cash: 200k</p>
-            <p>Logo</p>
+        <header className="flex justify-between">
+            <div>Current cash: 60k</div>
+            <div className="text-3xl">Road to Riches</div>
+            <div>Goal cash: 200k</div>
         </header>
     )
 }
