@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
+import cn from "classnames";
 
 enum ActionTypes {
   INCREASE = "increase",
@@ -16,6 +17,7 @@ export const BasicCarCard = ({
   const [price, setPrice] = useState(starting);
   const [actionType, setactionType] = useState("increase");
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     timeout.current = setInterval(() => {
@@ -39,14 +41,24 @@ export const BasicCarCard = ({
   }, [actionType, max, min]);
 
   return (
-    <button onClick={() => console.log(price)}>
-      <div className="mt-8 bg-blue-400 h-72 w-52 rounded-md flex flex-col">
+    <button
+      onClick={() => {
+        console.log(price);
+        setSelected(true);
+      }}
+    >
+      <div
+        className={cn(`mt-8 h-72 w-52 rounded-md flex flex-col`, {
+          "bg-yellow-600": selected,
+          "bg-blue-400": !selected,
+        })}
+      >
         <div className="flex items-center justify-center">
           <div className="p-4 text-center">Price: {price}</div>
           {actionType === ActionTypes.INCREASE ? (
-            <GoArrowUp className="bg-green-500 rounded-full" />
+            <GoArrowUp className="bg-green-500 rounded-full text-white" />
           ) : (
-            <GoArrowDown className="bg-red-500 rounded-full" />
+            <GoArrowDown className="bg-red-500 rounded-full text-white" />
           )}
         </div>
       </div>
