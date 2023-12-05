@@ -26,5 +26,5 @@ export const TimeCounter = () => {
         return [yearsString, daysString].filter(Boolean).join(" and ");
     };
 
-    return <div>{formatTime()}</div>;
+    return <span className="font-semibold">{formatTime()}</span>;
 };

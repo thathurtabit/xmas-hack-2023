@@ -90,7 +90,12 @@ export const BasicCarCard = ({
         })}
       >
         <div className="flex items-center justify-center">
-          <div className="p-4 text-center">Price: {price}</div>
+          <div className="p-4 text-center text-white">
+            Price:{" "}
+            <span className="font-semibold">
+              &pound;{price.toLocaleString()}
+            </span>
+          </div>
           {selected &&
             (actionType === ActionTypes.INCREASE ? (
               <GoArrowUp className="bg-green-500 rounded-full text-white" />

@@ -10,7 +10,7 @@ export const MainGame = () => {
     <>
       <Header />
       <div>
-        <div className="grid grid-cols-6 gap-2">
+        <div className="grid grid-cols-5 gap-2">
           {cars.map((car) => {
             return (
               <BasicCarCard
