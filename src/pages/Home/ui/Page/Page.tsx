@@ -4,7 +4,7 @@ import { FC } from "react";
 const Home: FC = () => {
   return (
     <>
-      <section className="min-h-[calc(100vh-64px)] bg-base-200">
+      <section className="min-h-screen bg-base-200 p-8 flex flex-col">
         <MainGame />
       </section>
     </>
