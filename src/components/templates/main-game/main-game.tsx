@@ -8,7 +8,7 @@ export const MainGame = () => {
   const {
     removeCarFromSelectedList,
     cars,
-    addSelectedCarsToList,
+    addSelectedCarsToSelectedListAndRemoveFromCarList,
     selectedCars,
     removeCarsFromCarsList,
   } = useGenerateCards();
@@ -21,7 +21,9 @@ export const MainGame = () => {
           return (
             <BasicCarCard
               {...car}
-              addSelectedCarsToList={addSelectedCarsToList}
+              addSelectedCarsToSelectedListAndRemoveFromCarList={
+                addSelectedCarsToSelectedListAndRemoveFromCarList
+              }
               removeCarsFromCarsList={removeCarsFromCarsList}
               key={car.id}
             />
