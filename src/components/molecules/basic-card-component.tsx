@@ -103,7 +103,9 @@ export const BasicCarCard = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: !canAfford ? 1 : 0 }}
         >
-          <p>Not enough dollar</p>
+          <div className="w-4/5 py-8 mx-auto border-2 border-gray-500 rounded-md bg-teal-600 text-white font-bold">
+            Not enough dollar
+          </div>
         </motion.div>
       </div>
     </button>
