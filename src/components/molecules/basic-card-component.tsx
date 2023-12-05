@@ -6,17 +6,14 @@ import {
   XmasHackStateContext,
 } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
+import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
 
 enum ActionTypes {
   INCREASE = "increase",
   DECREASE = "decrease",
 }
 
-interface BasicCardTypes {
-  starting: number;
-  max: number;
-  min: number;
-  id: number;
+interface BasicCardTypes extends CarTypes {
   removeCarFromList: (val: number) => void;
 }
 
@@ -32,6 +29,7 @@ export const BasicCarCard = ({
     Math.random() * 2 > 1 ? "increase" : "decrease",
   );
   const [selected, setSelected] = useState(false);
+  const [canAfford, setCanAfford] = useState(true);
 
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const dispatch = useContext(XmasHackDispatchContext);
@@ -47,6 +45,8 @@ export const BasicCarCard = ({
           setactionType(ActionTypes.INCREASE);
         }
 
+        setCanAfford(true);
+
         return actionType === ActionTypes.INCREASE
           ? prevState + 1
           : prevState - 1;
@@ -59,8 +59,11 @@ export const BasicCarCard = ({
   }, [actionType, max, min]);
 
   const handleMoneyAmount = () => {
-    if (!selected) {
+    if (!selected && price < moneyAmount) {
       dispatch(ammendMoneyAmount(moneyAmount - price));
+    }
+    if (!selected && price > moneyAmount) {
+      setCanAfford(false);
     }
     if (selected) {
       dispatch(ammendMoneyAmount(moneyAmount + price));
@@ -72,10 +75,10 @@ export const BasicCarCard = ({
       onClick={() => {
         handleMoneyAmount();
         setSelected((prevState) => {
-          if (prevState) {
+          if (prevState && price < moneyAmount) {
             removeCarFromList(id);
           }
-          return !prevState;
+          return price < moneyAmount;
         });
       }}
     >
@@ -87,13 +90,15 @@ export const BasicCarCard = ({
       >
         <div className="flex items-center justify-center">
           <div className="p-4 text-center">Price: {price}</div>
-          {selected && (
-            actionType === ActionTypes.INCREASE ? (
+          {selected &&
+            (actionType === ActionTypes.INCREASE ? (
               <GoArrowUp className="bg-green-500 rounded-full text-white" />
             ) : (
               <GoArrowDown className="bg-red-500 rounded-full text-white" />
             ))}
         </div>
+        {/* // NEED TO REPLACE THIS WITH A MODAL OR ANIMATION */}
+        <div>{!canAfford && <p>Not enough dollar</p>}</div>
       </div>
     </button>
   );
