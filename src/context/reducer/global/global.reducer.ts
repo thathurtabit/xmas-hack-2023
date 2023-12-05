@@ -2,18 +2,13 @@ import { IModalState, IXmasHackState } from "@/context/state/state.types";
 import { IXmasHackContextAction } from "@/context/context/context.types";
 import { EAction } from "@/context/actions/action.types";
 import { initState } from "@/context/state/init-state";
+import { CarTypes } from "@/context/state/state.types";
 
 export const globalReducer = (
   state: IXmasHackState,
   { type, payload }: IXmasHackContextAction,
 ): IXmasHackState => {
   switch (type) {
-    case EAction.SET_HELLO_WORLD: {
-      return {
-        ...state,
-        helloWorld: payload as boolean,
-      };
-    }
     case EAction.SET_MODAL_DATA: {
       return {
         ...state,
@@ -36,6 +31,12 @@ export const globalReducer = (
       return {
         ...state,
         moneyAmount: payload as number
+      }
+    }
+    case EAction.SET_CAR_DATA: {
+      return {
+        ...state,
+        carData: payload as CarTypes[]
       }
     }
     default: {

@@ -1,50 +1,43 @@
-import { useEffect, useState, useRef, useContext, useMemo } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
+import { CarTypes } from "../../../context/state/state.types"
+import { XmasHackStateContext, XmasHackDispatchContext } from "@/context/context/context";
+import { setCarData, amendMoneyAmount } from "@/context/actions/example/hello-world";
+import { priceChangeIntervalMS } from "@/settings/settings";
 import { motion } from "framer-motion";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
-import cn from "classnames";
-import {
-  XmasHackDispatchContext,
-  XmasHackStateContext,
-} from "@/context/context/context";
-import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
-import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
-import { priceChangeIntervalMS } from "@/settings/settings";
 
 enum ActionTypes {
   INCREASE = "increase",
   DECREASE = "decrease",
 }
 
-interface BasicCardTypes extends CarTypes {
-  removeCarFromList: (val: number) => void;
-}
-
-export const BasicCarCard = ({
+export const Card = ({
+  id,
+  image,
+  onMarket,
   starting,
   max,
-  min,
-  id,
-  removeCarFromList,
-}: BasicCardTypes) => {
+  min
+}: CarTypes) => {
+
+  const dispatch = useContext(XmasHackDispatchContext);
+  const { carData, moneyAmount } = useContext(XmasHackStateContext);
   const [price, setPrice] = useState(starting);
-  const [actionType, setactionType] = useState(
+  const [actionType, setActionType] = useState(
     Math.random() * 2 > 1 ? "increase" : "decrease",
   );
-  const [selected, setSelected] = useState(false);
   const [canAfford, setCanAfford] = useState(true);
 
   const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
-  const dispatch = useContext(XmasHackDispatchContext);
-  const { moneyAmount } = useContext(XmasHackStateContext);
 
   useEffect(() => {
     timeout.current = setInterval(() => {
       setPrice((prevState) => {
         if (prevState === max && actionType === ActionTypes.INCREASE) {
-          setactionType(ActionTypes.DECREASE);
+          setActionType(ActionTypes.DECREASE);
         }
         if (prevState === min && actionType === ActionTypes.DECREASE) {
-          setactionType(ActionTypes.INCREASE);
+          setActionType(ActionTypes.INCREASE);
         }
 
         return actionType === ActionTypes.INCREASE
@@ -59,45 +52,29 @@ export const BasicCarCard = ({
   }, [actionType, max, min]);
 
   const handleMoneyAmount = () => {
-    if (!selected && price < moneyAmount) {
-      dispatch(ammendMoneyAmount(moneyAmount - price));
+    if (onMarket && price < moneyAmount) {
+      dispatch(amendMoneyAmount(moneyAmount - price));
     }
-    if (!selected && price > moneyAmount) {
+    if (onMarket && price > moneyAmount) {
       setCanAfford(false);
     }
-    if (selected) {
-      dispatch(ammendMoneyAmount(moneyAmount + price));
+    if (!onMarket) {
+      dispatch(amendMoneyAmount(moneyAmount + price));
     }
   };
 
-  const initialPosition = useMemo(() => Math.round(Math.random()) * 100, []);
-  const finalPosition = useMemo(() => 100 - initialPosition, [initialPosition]);
+  const handleSettingOnMarket = (currentMarketStatus: boolean) => {
+    const setCurrentMarketStatus = onMarket ? (price < moneyAmount ? !currentMarketStatus : currentMarketStatus) : !currentMarketStatus;
+    const updatedCarData = carData.map((car) => car.id === id ? { ...car, onMarket: setCurrentMarketStatus } : car )
+    dispatch(setCarData((updatedCarData)));
+  }
 
   return (
-    <motion.button
-      className="absolute"
-      initial={{ x: `${initialPosition}vw`, y: initialPosition ? 400 : 0 }}
-      animate={{ x: `${finalPosition}vw` }}
-      transition={{
-        x: { duration: 5, ease: "linear" },
-        ease: "linear",
-      }}
-      onClick={() => {
+    <div>
+      <img src={image} onClick={() => {
         handleMoneyAmount();
-        setSelected((prevState) => {
-          if (prevState) {
-            removeCarFromList(id);
-          }
-          return price < moneyAmount;
-        });
-      }}
-    >
-      <div
-        className={cn(`mt-8 h-72 w-52 rounded-md flex flex-col`, {
-          "bg-yellow-600": selected,
-          "bg-blue-400": !selected,
-        })}
-      >
+        handleSettingOnMarket((onMarket));
+      }} />
         <div className="flex items-center justify-center">
           <div className="p-4 text-center text-white">
             Price:{" "}
@@ -105,15 +82,14 @@ export const BasicCarCard = ({
               &pound;{price.toLocaleString()}
             </span>
           </div>
-          {selected &&
+          {!onMarket &&
             (actionType === ActionTypes.INCREASE ? (
               <GoArrowUp className="bg-green-500 rounded-full text-white" />
             ) : (
               <GoArrowDown className="bg-red-500 rounded-full text-white" />
             ))}
         </div>
-
-        {!canAfford && (
+      {!canAfford && (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: -50 }}
@@ -131,7 +107,6 @@ export const BasicCarCard = ({
             </div>
           </motion.div>
         )}
-      </div>
-    </motion.button >
+    </div>
   );
 };

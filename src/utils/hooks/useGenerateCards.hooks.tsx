@@ -11,6 +11,7 @@ export interface CarTypes {
   starting: number;
   max: number;
   min: number;
+  onMarket: boolean;
 }
 
 export const useGenerateCards = () => {
@@ -31,6 +32,7 @@ export const useGenerateCards = () => {
             starting,
             max: Math.floor(starting * priceChangeMultiplierUPPER),
             min: Math.floor(starting * priceChangeMultiplierLOWER),
+            onMarket: false,
           });
         }
         return prevCars;
@@ -39,9 +41,5 @@ export const useGenerateCards = () => {
     return () => clearInterval(interval);
   }, [moneyAmount, cars]);
 
-  const removeCarFromList = (key: number) => {
-    const newCars = cars.filter((car) => car.id !== key);
-    setCars(newCars);
-  };
-  return { removeCarFromList, cars };
+  return { cars };
 };
