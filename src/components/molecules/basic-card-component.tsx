@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useContext } from "react";
+import { motion } from "framer-motion";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import cn from "classnames";
 import {
@@ -51,7 +52,7 @@ export const BasicCarCard = ({
           ? prevState + 1
           : prevState - 1;
       });
-    }, 500);
+    }, 1000);
 
     return () => {
       clearInterval(timeout.current as ReturnType<typeof setInterval>);
@@ -97,8 +98,13 @@ export const BasicCarCard = ({
               <GoArrowDown className="bg-red-500 rounded-full text-white" />
             ))}
         </div>
-        {/* // NEED TO REPLACE THIS WITH A MODAL OR ANIMATION */}
-        <div>{!canAfford && <p>Not enough dollar</p>}</div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: !canAfford ? 1 : 0 }}
+        >
+          <p>Not enough dollar</p>
+        </motion.div>
       </div>
     </button>
   );
