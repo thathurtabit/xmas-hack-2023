@@ -15,6 +15,7 @@ export interface CarTypes {
 
 export const useGenerateCards = () => {
   const [cars, setCars] = useState<CarTypes[]>([]);
+  const [selectedCars, setSelectedCars] = useState<CarTypes[]>([]);
 
   const { moneyAmount } = useContext(XmasHackStateContext);
 
@@ -39,9 +40,19 @@ export const useGenerateCards = () => {
     return () => clearInterval(interval);
   }, [moneyAmount, cars]);
 
-  const removeCarFromList = (key: number) => {
+  const removeCarFromSelectedList = (key: number) => {
+    const newCars = selectedCars.filter((car) => car.id !== key);
+    setSelectedCars(newCars);
+  };
+
+  const addSelectedCarsToList = (key: number) => {
     const newCars = cars.filter((car) => car.id !== key);
+    const chosenCars = cars.find((car) => car.id === key);
+    setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
     setCars(newCars);
   };
-  return { removeCarFromList, cars };
+
+  console.log({ selectedCars, cars });
+
+  return { removeCarFromSelectedList, cars, addSelectedCarsToList };
 };

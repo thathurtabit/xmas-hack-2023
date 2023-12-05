@@ -16,7 +16,8 @@ enum ActionTypes {
 }
 
 interface BasicCardTypes extends CarTypes {
-  removeCarFromList: (val: number) => void;
+  removeCarFromSelectedList: (val: number) => void;
+  addSelectedCarsToList: (val: number) => void;
 }
 
 export const BasicCarCard = ({
@@ -24,7 +25,8 @@ export const BasicCarCard = ({
   max,
   min,
   id,
-  removeCarFromList,
+  removeCarFromSelectedList,
+  addSelectedCarsToList,
 }: BasicCardTypes) => {
   const [price, setPrice] = useState(starting);
   const [actionType, setactionType] = useState(
@@ -60,6 +62,7 @@ export const BasicCarCard = ({
 
   const handleMoneyAmount = () => {
     if (!selected && price < moneyAmount) {
+      addSelectedCarsToList(id);
       dispatch(ammendMoneyAmount(moneyAmount - price));
     }
     if (!selected && price > moneyAmount) {
@@ -86,8 +89,9 @@ export const BasicCarCard = ({
         handleMoneyAmount();
         setSelected((prevState) => {
           if (prevState) {
-            removeCarFromList(id);
+            removeCarFromSelectedList(id);
           }
+
           return price < moneyAmount;
         });
       }}
@@ -132,6 +136,6 @@ export const BasicCarCard = ({
           </motion.div>
         )}
       </div>
-    </motion.button >
+    </motion.button>
   );
 };

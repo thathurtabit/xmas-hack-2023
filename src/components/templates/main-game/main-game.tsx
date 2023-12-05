@@ -4,7 +4,8 @@ import { Footer } from "@/components/molecules/footer/footer";
 import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
 
 export const MainGame = () => {
-  const { removeCarFromList, cars } = useGenerateCards();
+  const { removeCarFromSelectedList, cars, addSelectedCarsToList } =
+    useGenerateCards();
 
   return (
     <>
@@ -15,7 +16,8 @@ export const MainGame = () => {
             return (
               <BasicCarCard
                 {...car}
-                removeCarFromList={removeCarFromList}
+                removeCarFromSelectedList={removeCarFromSelectedList}
+                addSelectedCarsToList={addSelectedCarsToList}
                 key={car.id}
               />
             );
