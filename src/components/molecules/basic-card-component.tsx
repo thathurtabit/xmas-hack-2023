@@ -47,8 +47,6 @@ export const BasicCarCard = ({
           setactionType(ActionTypes.INCREASE);
         }
 
-        setCanAfford(true);
-
         return actionType === ActionTypes.INCREASE
           ? prevState + 1
           : prevState - 1;
@@ -109,6 +107,10 @@ export const BasicCarCard = ({
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: -50 }}
+            transition={{ duration: 1.5 }}
+            onAnimationComplete={() => {
+              setCanAfford(true);
+            }}
           >
             <div className="w-4/5 py-8 mx-auto border-2 border-gray-500 rounded-md bg-teal-600 text-white font-bold">
               Not enough dollar
