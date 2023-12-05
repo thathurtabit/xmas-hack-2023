@@ -52,7 +52,10 @@ export const useGenerateCards = () => {
     setCars(newCars);
   };
 
-  console.log({ selectedCars, cars });
-
-  return { removeCarFromSelectedList, cars, addSelectedCarsToList };
+  return {
+    removeCarFromSelectedList,
+    cars,
+    addSelectedCarsToList,
+    selectedCars,
+  };
 };
