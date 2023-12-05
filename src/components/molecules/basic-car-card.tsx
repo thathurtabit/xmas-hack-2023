@@ -1,29 +1,45 @@
-export const BasicCarCard = () => {
-  //   const [timer, setTimer] = useState(0);
-  //   const timeout = useRef<NodeJS.Timeout | null>(null);
+import { useEffect, useState, useRef } from "react";
 
-  //   useEffect(() => {
-  //     startTimer();
-  //     return () => {
-  //       clearInterval(timeout.current as NodeJS.Timeout);
-  //     };
-  //   }, []);
+enum ActionTypes {
+  INCREASE = "increase",
+  DECREASE = "decrease",
+}
 
-  //   const resetTimer = () => {
-  //     clearInterval(timeout.current as NodeJS.Timeout);
-  //   };
+export const BasicCarCard = ({
+  starting,
+  max,
+  min,
+}: {
+  [value: string]: number;
+}) => {
+  const [price, setPrice] = useState(starting);
+  const [actionType, setactionType] = useState("increase");
+  const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  //   const startTimer = () => {
-  //     const maxAmount = TESTIMONIALS.length;
-  //     timeout.current = setInterval(() => {
-  //       setSlide((prevState) => {
-  //         if (prevState === maxAmount - 1) {
-  //           return 0;
-  //         }
-  //         return prevState + 1;
-  //       });
-  //     }, 5000);
-  //   };
+  useEffect(() => {
+    timeout.current = setInterval(() => {
+      setPrice((prevState) => {
+        if (prevState === max && actionType === ActionTypes.INCREASE) {
+          setactionType(ActionTypes.DECREASE);
+        }
+        if (prevState === min && actionType === ActionTypes.DECREASE) {
+          setactionType(ActionTypes.INCREASE);
+        }
 
-  return <div>Hello</div>;
+        return actionType === ActionTypes.INCREASE
+          ? prevState + 1
+          : prevState - 1;
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timeout.current as ReturnType<typeof setInterval>);
+    };
+  }, [actionType, max, min]);
+
+  return (
+    <div className="mt-8 bg-blue-400 h-72 w-52 rounded-md flex flex-col">
+      <div className="p-4 text-center">Price: {price}</div>
+    </div>
+  );
 };
