@@ -82,11 +82,12 @@ export const BasicCarCard = ({
       >
         <div className="flex items-center justify-center">
           <div className="p-4 text-center">Price: {price}</div>
-          {actionType === ActionTypes.INCREASE ? (
-            <GoArrowUp className="bg-green-500 rounded-full text-white" />
-          ) : (
-            <GoArrowDown className="bg-red-500 rounded-full text-white" />
-          )}
+          {selected && (
+            actionType === ActionTypes.INCREASE ? (
+              <GoArrowUp className="bg-green-500 rounded-full text-white" />
+            ) : (
+              <GoArrowDown className="bg-red-500 rounded-full text-white" />
+            ))}
         </div>
       </div>
     </button>
