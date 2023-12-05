@@ -21,8 +21,9 @@ export const BasicCarCard = ({
 }) => {
   const [price, setPrice] = useState(starting);
   const [actionType, setactionType] = useState("increase");
-  const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const [selected, setSelected] = useState(false);
+  const [remove, setRemove] = useState(false);
+  const timeout = useRef<ReturnType<typeof setInterval> | null>(null);
   const dispatch = useContext(XmasHackDispatchContext);
   const { moneyAmount } = useContext(XmasHackStateContext);
 
@@ -56,11 +57,20 @@ export const BasicCarCard = ({
     }
   };
 
+  if (remove) {
+    return null;
+  }
+
   return (
     <button
       onClick={() => {
         handleMoneyAmount();
-        setSelected(true);
+        setSelected((prevState) => {
+          if (prevState) {
+            setRemove(true);
+          }
+          return !prevState;
+        });
       }}
     >
       <div
