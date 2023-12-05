@@ -6,7 +6,8 @@ export const setHelloWorld = (payload: boolean): IXmasHackContextAction => ({
   payload,
 });
 
-export const incrementTimeDays = (): IXmasHackContextAction => ({
+export const incrementTimeInDays = (
+): IXmasHackContextAction => ({
   type: EAction.INCREMENT_TIME_DAYS,
 });
 

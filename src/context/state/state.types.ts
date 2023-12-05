@@ -1,5 +1,5 @@
 export interface IXmasHackState {
   helloWorld: boolean;
-  timeDays: number;
+  timeInDays: number;
   moneyAmount: number
 }

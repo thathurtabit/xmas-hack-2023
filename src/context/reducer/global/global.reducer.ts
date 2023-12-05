@@ -16,7 +16,7 @@ export const globalReducer = (
     case EAction.INCREMENT_TIME_DAYS: {
       return {
         ...state,
-        timeDays: state.timeDays + 1,
+        timeInDays: state.timeInDays + 1,
       };
     }
     case EAction.SET_MONEY_AMOUNT: {
