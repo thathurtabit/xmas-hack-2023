@@ -45,6 +45,11 @@ export const useGenerateCards = () => {
     setSelectedCars(newCars);
   };
 
+  const removeCarsFromCarsList = (key: number) => {
+    const newCars = cars.filter((car) => car.id !== key);
+    setCars(newCars);
+  };
+
   const addSelectedCarsToList = (key: number) => {
     const newCars = cars.filter((car) => car.id !== key);
     const chosenCars = cars.find((car) => car.id === key);
@@ -57,5 +62,6 @@ export const useGenerateCards = () => {
     cars,
     addSelectedCarsToList,
     selectedCars,
+    removeCarsFromCarsList,
   };
 };

@@ -8,8 +8,8 @@ import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
 import { useCarCardTimer } from "@/utils/hooks/useCarCardTimer.hooks";
 
 interface BasicCardTypes extends CarTypes {
-  removeCarFromSelectedList: (val: number) => void;
   addSelectedCarsToList: (val: number) => void;
+  removeCarsFromCarsList: (val: number) => void;
 }
 
 export const BasicCarCard = ({
@@ -18,6 +18,7 @@ export const BasicCarCard = ({
   min,
   id,
   addSelectedCarsToList,
+  removeCarsFromCarsList,
 }: BasicCardTypes) => {
   const dispatch = useContext(XmasHackDispatchContext);
 
@@ -53,6 +54,9 @@ export const BasicCarCard = ({
       }}
       onClick={() => {
         handleMoneyAmount();
+      }}
+      onAnimationComplete={() => {
+        removeCarsFromCarsList(id);
       }}
     >
       <div

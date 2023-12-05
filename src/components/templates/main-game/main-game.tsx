@@ -10,19 +10,19 @@ export const MainGame = () => {
     cars,
     addSelectedCarsToList,
     selectedCars,
+    removeCarsFromCarsList,
   } = useGenerateCards();
 
   return (
     <>
       <Header />
-      {/* <div className="flex flex-col"> */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
         {cars.map((car) => {
           return (
             <BasicCarCard
               {...car}
-              removeCarFromSelectedList={removeCarFromSelectedList}
               addSelectedCarsToList={addSelectedCarsToList}
+              removeCarsFromCarsList={removeCarsFromCarsList}
               key={car.id}
             />
           );
@@ -39,7 +39,7 @@ export const MainGame = () => {
           );
         })}
       </div>
-      {/* </div> */}
+
       <Footer />
     </>
   );
