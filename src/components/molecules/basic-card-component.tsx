@@ -70,7 +70,7 @@ export const BasicCarCard = ({
       <div className={`mt-8 w-72 rounded-md flex flex-col`}>
         <img src={image} className="max-w-full" />
         <div className="flex items-center justify-center">
-          <div className="py-1 px-8 -mt-12 text-center text-white text-2xl bg-teal-700 rounded-md">
+          <div className="py-1 px-8 -mt-6 text-center text-white text-2xl bg-teal-700 rounded-md">
             Price:{" "}
             <span className="font-semibold">
               &pound;{price.toLocaleString()}
