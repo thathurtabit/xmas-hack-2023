@@ -1,7 +1,7 @@
 import { IconConfirm } from "@/components/icons/confirm/confirm";
 import { IconCurrency } from "@/components/icons/currency/currency";
 import { IconInfo } from "@/components/icons/info/info";
-import { setNotificationData } from "@/context/actions/notification/notification.action";
+import { setAllNotificationData } from "@/context/actions/notification/notification.action";
 import {
   XmasHackDispatchContext,
   XmasHackStateContext,
@@ -19,7 +19,7 @@ export const Notifications: FC = () => {
     const interval = setInterval(() => {
       if (!notifications.length) return;
       const trimmedNotifications = notifications.slice(1);
-      dispatch(setNotificationData(trimmedNotifications));
+      dispatch(setAllNotificationData(trimmedNotifications));
     }, notificationTimeoutMS);
     return () => {
       clearInterval(interval);

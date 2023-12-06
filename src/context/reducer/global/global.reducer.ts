@@ -21,10 +21,16 @@ export const globalReducer = (
         modal: initState.modal,
       };
     }
-    case EAction.SET_NOTIFICATION_DATA: {
+    case EAction.SET_ALL_NOTIFICATION_DATA: {
       return {
         ...state,
         notifications: payload as INotificationState[],
+      };
+    }
+    case EAction.SET_NEW_NOTIFICATION: {
+      return {
+        ...state,
+        notifications: [...state.notifications, payload as INotificationState],
       };
     }
     case EAction.INCREMENT_TIME_DAYS: {

@@ -5,6 +5,7 @@ import { setCarData, amendMoneyAmount } from "@/context/actions/example/hello-wo
 import { priceChangeIntervalMS } from "@/settings/settings";
 import { motion } from "framer-motion";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
+import { setNewNotification } from "@/context/actions/notification/notification.action";
 
 enum ActionTypes {
   INCREASE = "increase",
@@ -54,12 +55,24 @@ export const Card = ({
   const handleMoneyAmount = () => {
     if (onMarket && price < moneyAmount) {
       dispatch(amendMoneyAmount(moneyAmount - price));
+      dispatch(
+        setNewNotification({
+          title: `You bought a car for £${price.toLocaleString()}`,
+          type: "buy",
+        }),
+      );
     }
     if (onMarket && price > moneyAmount) {
       setCanAfford(false);
     }
     if (!onMarket) {
       dispatch(amendMoneyAmount(moneyAmount + price));
+      dispatch(
+        setNewNotification({
+          title: `You sold a car for £${price.toLocaleString()}`,
+          type: "sell",
+        }),
+      );
     }
   };
 
