@@ -11,10 +11,17 @@ export const RoadAndParking = () => {
     selectedCars,
   } = useGenerateCards();
 
+
   return (
     <>
       <div className="h-[360px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
-        <div className="relative">
+        <div className="relative h-full">
+          <div className="flex z-0 absolute justify-between w-full h-full items-center">
+              <div className="h-[40px] w-[200px] bg-white"></div>
+              <div className="h-[40px] w-[200px] bg-white"></div>
+              <div className="h-[40px] w-[200px] bg-white"></div>
+              <div className="h-[40px] w-[200px] bg-white"></div>
+          </div>
         {cars.map((car) => {
           return (
             <BasicCarCard
