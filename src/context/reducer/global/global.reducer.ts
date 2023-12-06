@@ -8,10 +8,16 @@ export const globalReducer = (
   { type, payload }: IXmasHackContextAction,
 ): IXmasHackState => {
   switch (type) {
-    case EAction.SET_HELLO_WORLD: {
+    case EAction.SET_IS_GAME_RUNNING: {
       return {
         ...state,
-        helloWorld: payload as boolean,
+        isGameRunning: payload as boolean,
+      };
+    }
+    case EAction.SET_HAS_UNDERSTOOD_INTRO: {
+      return {
+        ...state,
+        hasUnderstoodIntro: payload as boolean,
       };
     }
     case EAction.SET_MODAL_DATA: {

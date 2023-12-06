@@ -2,7 +2,8 @@ import { ButtonProps } from "@/components/atoms/button/button.types";
 import { ReactElement, ReactNode } from "react";
 
 export interface IXmasHackState {
-  helloWorld: boolean;
+  isGameRunning: boolean;
+  hasUnderstoodIntro: boolean;
   timeInDays: number;
   moneyAmount: number
   modal: IModalState;

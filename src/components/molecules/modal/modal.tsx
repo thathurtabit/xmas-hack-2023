@@ -94,7 +94,7 @@ export const Modal: FC = () => {
         <FocusTrap>
           <motion.section
             data-cy="modal-bg"
-            className="fixed bottom-0 left-0 right-0 top-0 z-modal grid place-items-center bg-black/5 bg-opacity-50 backdrop-blur-xl"
+            className="fixed bottom-0 left-0 right-0 top-0 z-modal grid place-items-center bg-primary bg-opacity-50 backdrop-blur-md"
             role="button"
             tabIndex={0}
             onClick={handleCloseModal}
@@ -112,7 +112,7 @@ export const Modal: FC = () => {
                 <motion.dialog
                   open
                   data-cy="modal"
-                  className="relative w-full bg-black/20 overflow-hidden rounded-md p-0 text-copy-inverse"
+                  className="relative w-full bg-white text-black overflow-hidden rounded-md p-0 text-copy-inverse"
                   {...modalTransitions}
                 >
                   <header

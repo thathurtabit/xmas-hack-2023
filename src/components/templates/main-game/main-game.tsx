@@ -3,9 +3,12 @@ import { Header } from "@/components/molecules/header/header";
 import { Footer } from "@/components/molecules/footer/footer";
 import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
 import { Notifications } from "@/components/molecules/notifications/notifications";
+import { useIntroModal } from "@/utils/hooks/use-intro-modal.hook";
+import { Modal } from "@/components/molecules/modal/modal";
 
 export const MainGame = () => {
   const { removeCarFromList, cars } = useGenerateCards();
+  useIntroModal();
 
   return (
     <>
@@ -24,6 +27,7 @@ export const MainGame = () => {
         </div>
       </div>
       <Notifications />
+      <Modal />
       <Footer />
     </>
   );

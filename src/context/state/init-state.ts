@@ -2,7 +2,8 @@ import { startingCash } from "@/settings/settings";
 import { IXmasHackState } from "./state.types";
 
 export const initState: IXmasHackState = {
-  helloWorld: false,
+  isGameRunning: false,
+  hasUnderstoodIntro: false,
   timeInDays: 0,
   moneyAmount: startingCash,
   modal: {
