@@ -75,9 +75,9 @@ export const useGenerateCards = () => {
     price: number,
   ) => {
     const boughtCarPrice = getCarPrice(key);
-
     const chosenCars = cars.find((car) => car.id === key);
     (chosenCars as CarTypes).price = price;
+
     setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
     if (boughtCarPrice) {
       dispatch(

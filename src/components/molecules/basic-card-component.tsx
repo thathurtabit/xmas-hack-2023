@@ -91,7 +91,7 @@ export const BasicCarCard = ({
               setCanAfford(true);
             }}
           >
-            <div className="w-4/5 py-8 mx-auto border-2 border-gray-500 rounded-md bg-teal-600 text-white font-bold">
+            <div className="w-4/5 py-8 mx-auto border-2 border-gray-500 rounded-md bg-teal-600 text-white font-bold text-xl">
               Not enough dollar
             </div>
           </motion.div>
