@@ -13,17 +13,17 @@ interface BasicCardTypes extends CarTypes {
 }
 
 export const SelectedCarCard = ({
-  starting,
   image,
   max,
   min,
   id,
+  price: selectedPrice,
   removeCarFromSelectedList,
 }: BasicCardTypes) => {
   const dispatch = useContext(XmasHackDispatchContext);
 
   const { price, moneyAmount, actionType } = useCarCardTimer({
-    starting,
+    starting: selectedPrice,
     max,
     min,
   });
