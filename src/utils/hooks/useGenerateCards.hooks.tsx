@@ -1,4 +1,8 @@
-import { XmasHackStateContext } from "@/context/context/context";
+import { setNewNotification } from "@/context/actions/notification/notification.action";
+import {
+  XmasHackDispatchContext,
+  XmasHackStateContext,
+} from "@/context/context/context";
 import {
   generateNewCardIntervalMS,
   priceChangeMultiplierLOWER,
@@ -17,8 +21,8 @@ export interface CarTypes {
 export const useGenerateCards = () => {
   const [cars, setCars] = useState<CarTypes[]>([]);
   const [selectedCars, setSelectedCars] = useState<CarTypes[]>([]);
-
   const { moneyAmount } = useContext(XmasHackStateContext);
+  const dispatch = useContext(XmasHackDispatchContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,8 +46,20 @@ export const useGenerateCards = () => {
     return () => clearInterval(interval);
   }, [moneyAmount, cars]);
 
+  const getCarPrice = (key: number) =>
+    selectedCars.find((car) => car.id === key)?.price;
+
   const removeCarFromSelectedList = (key: number) => {
+    const soldCarPrice = getCarPrice(key);
     const newCars = selectedCars.filter((car) => car.id !== key);
+    if (soldCarPrice) {
+      dispatch(
+        setNewNotification({
+          title: `You sold a car for £${soldCarPrice?.toLocaleString()}`,
+          type: "sell",
+        }),
+      );
+    }
     setSelectedCars(newCars);
   };
 
@@ -53,8 +69,17 @@ export const useGenerateCards = () => {
   };
 
   const addSelectedCarsToSelectedListAndRemoveFromCarList = (key: number) => {
+    const boughtCarPrice = getCarPrice(key);
     const chosenCars = cars.find((car) => car.id === key);
     setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
+    if (boughtCarPrice) {
+      dispatch(
+        setNewNotification({
+          title: `You bought a car for £${boughtCarPrice?.toLocaleString()}`,
+          type: "buy",
+        }),
+      );
+    }
     removeCarsFromCarsList(key);
   };
 
