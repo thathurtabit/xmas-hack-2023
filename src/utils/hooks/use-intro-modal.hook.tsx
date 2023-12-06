@@ -21,7 +21,7 @@ export const useIntroModal = () => {
   const currentIntroPanelData = useMemo(() => {
     const introModalData: IModalState[] = [
       {
-        title: "Welcome to Roads to Riches",
+        title: "Welcome to Road to Riches",
         content: (
           <p>The aim is to buy cars for a low price, and sell for high!</p>
         ),
