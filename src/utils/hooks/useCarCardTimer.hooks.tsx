@@ -27,16 +27,16 @@ export const useCarCardTimer = ({
   useEffect(() => {
     timeout.current = setInterval(() => {
       setPrice((prevState) => {
-        if (prevState === max && actionType === ActionTypes.INCREASE) {
+        if (prevState >= max && actionType === ActionTypes.INCREASE) {
           setactionType(ActionTypes.DECREASE);
         }
-        if (prevState === min && actionType === ActionTypes.DECREASE) {
+        if (prevState <= min && actionType === ActionTypes.DECREASE) {
           setactionType(ActionTypes.INCREASE);
         }
 
         return actionType === ActionTypes.INCREASE
-          ? prevState + 182
-          : prevState - 105;
+          ? prevState + 327
+          : prevState - 155;
       });
     }, priceChangeIntervalMS);
 

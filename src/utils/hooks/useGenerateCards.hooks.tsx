@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 export interface CarTypes {
   id: number;
   starting: number;
+  price: number;
   max: number;
   min: number;
 }
@@ -30,6 +31,7 @@ export const useGenerateCards = () => {
             // TODO: use better key than random number
             id: Math.floor(Math.random() * 100) * (starting * 1.1),
             starting,
+            price: starting,
             max: Math.floor(starting * priceChangeMultiplierUPPER),
             min: Math.floor(starting * priceChangeMultiplierLOWER),
           });
