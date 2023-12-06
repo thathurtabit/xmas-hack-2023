@@ -4,12 +4,12 @@ import { MainGame } from "@/components/templates/main-game/main-game";
 import { setGameStatus } from "@/context/actions/game-status/game-status";
 import { XmasHackDispatchContext, XmasHackStateContext } from "@/context/context/context";
 import { GameStatus } from "@/context/state/state.types";
-import { goalCash, minimumCashUntilBankruptcy } from "@/settings/settings";
+import { goalCash, minimumCashUntilBankruptcy, numberOfDaysUntilGameOver } from "@/settings/settings";
 import { FC, useContext } from "react";
 
 const Home: FC = () => {
   const dispatch = useContext(XmasHackDispatchContext);
-  const { moneyAmount, gameStatus } = useContext(XmasHackStateContext);
+  const { moneyAmount, gameStatus, timeInDays } = useContext(XmasHackStateContext);
 
   const financialStatus = moneyAmount <= minimumCashUntilBankruptcy ? GameStatus.Bankrupt : moneyAmount >= goalCash ? GameStatus.Won : null;
 
@@ -21,10 +21,10 @@ const Home: FC = () => {
     <>
       <section className="min-h-screen bg-emerald-900 items-stretch self-stretch flex flex-col overflow-hidden">
         {gameStatus === GameStatus.Bankrupt ||
-        gameStatus === GameStatus.TimeUp ? (
+          gameStatus === GameStatus.TimeUp ? (
           <GameOver reason={gameStatus} />
         ) : gameStatus === GameStatus.Won ? (
-          <GameWon score={10} />
+          <GameWon score={numberOfDaysUntilGameOver - timeInDays} />
         ) : (
           <MainGame />
         )}
