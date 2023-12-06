@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import { XmasHackDispatchContext } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
-import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
+import { CarTypes } from "@/utils/hooks/use-generate-cards.hooks";
 import {
   ActionTypes,
   useCarCardTimer,
-} from "@/utils/hooks/useCarCardTimer.hooks";
+} from "@/utils/hooks/use-car-card-timer.hooks";
 
 interface BasicCardTypes extends CarTypes {
   removeCarFromSelectedList: (val: number, price: number) => void;

@@ -17,7 +17,7 @@ export const useCarCardTimer = ({
   min: number;
 }) => {
   const [price, setPrice] = useState(starting);
-  const [actionType, setactionType] = useState(
+  const [actionType, setActionType] = useState(
     Math.random() * 2 > 1 ? "increase" : "decrease",
   );
 
@@ -28,10 +28,10 @@ export const useCarCardTimer = ({
     timeout.current = setInterval(() => {
       setPrice((prevState) => {
         if (prevState >= max && actionType === ActionTypes.INCREASE) {
-          setactionType(ActionTypes.DECREASE);
+          setActionType(ActionTypes.DECREASE);
         }
         if (prevState <= min && actionType === ActionTypes.DECREASE) {
-          setactionType(ActionTypes.INCREASE);
+          setActionType(ActionTypes.INCREASE);
         }
 
         return actionType === ActionTypes.INCREASE

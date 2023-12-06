@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 import { XmasHackDispatchContext } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
-import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
+import { CarTypes } from "@/utils/hooks/use-generate-cards.hooks";
 import { setNewNotification } from "@/context/actions/notification/notification.action";
-import { useCarCardTimer } from "@/utils/hooks/useCarCardTimer.hooks";
+import { useCarCardTimer } from "@/utils/hooks/use-car-card-timer.hooks";
 import { carSpeed } from "@/settings/settings";
 
 interface BasicCardTypes extends CarTypes {

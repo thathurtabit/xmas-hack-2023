@@ -1,5 +1,5 @@
 import { BasicCarCard } from "@/components/molecules/basic-card-component";
-import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
+import { useGenerateCards } from "@/utils/hooks/use-generate-cards.hooks";
 import { SelectedCarCard } from "@/components/molecules/selected-cars-card";
 
 export const RoadAndParking = () => {
@@ -14,10 +14,10 @@ export const RoadAndParking = () => {
   const roadMarkings = () => {
     const markings = [];
     for (let i = 0; i < 4; i++) {
-      markings.push(<div className="h-[40px] w-1/6 bg-white/50" key={i}></div>)
+      markings.push(<div className="h-[40px] w-1/6 bg-white/50" key={i}></div>);
     }
     return markings;
-  }
+  };
 
   return (
     <>
@@ -41,7 +41,10 @@ export const RoadAndParking = () => {
         </div>
       </div>
       <div className="flex">
-        <img className="w-[150px] h-[160px] mr-[30px]" src="/images/parking-sign.png" />
+        <img
+          className="w-[150px] h-[160px] mr-[30px]"
+          src="/images/parking-sign.png"
+        />
         <div className="flex flex-wrap bg-slate-800 p-[20px] w-full gap-[20px]">
           {selectedCars.map((car) => {
             return (
