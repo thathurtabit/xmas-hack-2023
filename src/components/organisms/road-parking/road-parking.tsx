@@ -14,7 +14,7 @@ export const RoadAndParking = () => {
   const roadMarkings = () => {
     const markings = [];
     for(let i = 0; i < 4; i++) {
-      markings.push(<div className="h-[40px] w-[200px] bg-white"></div>)
+      markings.push(<div className="h-[40px] w-1/6 bg-white"></div>)
     }
     return markings;
   }
@@ -40,16 +40,19 @@ export const RoadAndParking = () => {
         })}
         </div>
       </div>
-      <div>
-        {selectedCars.map((car) => {
-          return (
-            <SelectedCarCard
-              {...car}
-              removeCarFromSelectedList={removeCarFromSelectedList}
-              key={car.id}
-            />
-          );
-        })}
+      <div className="flex">
+        <img className="w-[150px] h-[160px] mr-[30px]" src="/images/parking-sign.png" />
+        <div className="flex flex-wrap bg-slate-800 p-[20px] w-full gap-[20px]">
+          {selectedCars.map((car) => {
+            return (
+              <SelectedCarCard
+                {...car}
+                removeCarFromSelectedList={removeCarFromSelectedList}
+                key={car.id}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );
