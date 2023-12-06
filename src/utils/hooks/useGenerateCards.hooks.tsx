@@ -9,6 +9,7 @@ import {
   priceChangeMultiplierUPPER,
 } from "@/settings/settings";
 import { useContext, useEffect, useState } from "react";
+import { selectCarImage } from "../select-car-image";
 
 export interface CarTypes {
   id: number;
@@ -16,6 +17,7 @@ export interface CarTypes {
   price: number;
   max: number;
   min: number;
+  image: string;
 }
 
 export const useGenerateCards = () => {
@@ -36,6 +38,7 @@ export const useGenerateCards = () => {
             id: Math.floor(Math.random() * 100) * (starting * 1.1),
             starting,
             price: starting,
+            image: selectCarImage(starting),
             max: Math.floor(starting * priceChangeMultiplierUPPER),
             min: Math.floor(starting * priceChangeMultiplierLOWER),
           });

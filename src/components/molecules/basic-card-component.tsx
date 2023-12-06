@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
-import cn from "classnames";
 import { XmasHackDispatchContext } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
@@ -19,6 +18,7 @@ export const BasicCarCard = ({
   max,
   min,
   id,
+  image,
   addSelectedCarsToSelectedListAndRemoveFromCarList,
   removeCarsFromCarsList,
 }: BasicCardTypes) => {
@@ -64,9 +64,7 @@ export const BasicCarCard = ({
         removeCarsFromCarsList(id);
       }}
     >
-      <div
-        className={cn(`mt-8 h-72 w-52 rounded-md flex flex-col bg-blue-400`)}
-      >
+      <div className={`mt-8 w-52 rounded-md flex flex-col bg-blue-400`}>
         <div className="flex items-center justify-center">
           <div className="p-4 text-center text-white">
             Price:{" "}
@@ -75,6 +73,8 @@ export const BasicCarCard = ({
             </span>
           </div>
         </div>
+
+        <img src={image} />
 
         {!canAfford && (
           <motion.div
