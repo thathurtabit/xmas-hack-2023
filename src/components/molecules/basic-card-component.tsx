@@ -84,6 +84,7 @@ export const BasicCarCard = ({
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: -50 }}
+            exit={{ opacity: 0, y: 50 }}
             transition={{
               duration: 1.5,
               type: "spring",
@@ -93,7 +94,7 @@ export const BasicCarCard = ({
               setCanAfford(true);
             }}
           >
-            <div className="w-4/5 p-4 mx-auto rounded-md bg-red-600 text-white font-bold text-lg flex items-center justify-center gap-2">
+            <div className="w-4/5 px-4 py-3 mx-auto absolute left-1/2 -translate-x-1/2 rounded-md bg-red-600 text-white font-bold text-lg flex items-center justify-center gap-2">
               <IconError /> <span>Not enough dollar</span>
             </div>
           </motion.div>
