@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { GameOver } from "./game-over";
+import { GameOverReason } from "./game-over.types";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -12,6 +13,14 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
+  argTypes: {
+    reason: {
+      options: Object.values(GameOverReason),
+      control: {
+        type: "radio",
+      }
+    },
+  },
 } satisfies Meta<typeof GameOver>;
 
 export default meta;
@@ -19,5 +28,7 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
-  args: {},
+  args: {
+    reason: GameOverReason.Time,
+  },
 };
