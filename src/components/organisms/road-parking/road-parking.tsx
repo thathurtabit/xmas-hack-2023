@@ -21,7 +21,7 @@ export const RoadAndParking = () => {
 
   return (
     <>
-      <div className="h-[360px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
+      <div className="h-[310px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
         <div className="relative h-full">
           <div className="flex z-0 absolute justify-between w-full h-full items-center">
             {roadMarkings()}
