@@ -8,4 +8,3 @@ export const carSpeed = 5
 export const notificationTimeoutMS = 3000;
 export const incrementTimeIntervalMS = 164;
 export const numberOfDaysUntilGameOver = 730;
-export const carSpeed = 5;
