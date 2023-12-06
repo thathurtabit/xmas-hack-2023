@@ -14,7 +14,7 @@ export const RoadAndParking = () => {
   const roadMarkings = () => {
     const markings = [];
     for (let i = 0; i < 4; i++) {
-      markings.push(<div className="h-[40px] w-1/6 bg-white" key={i}></div>)
+      markings.push(<div className="h-[40px] w-1/6 bg-white/50" key={i}></div>)
     }
     return markings;
   }
