@@ -6,6 +6,7 @@ export interface IXmasHackState {
   timeInDays: number;
   moneyAmount: number
   modal: IModalState;
+  notifications: INotificationState[];
 }
 
 export interface IModalFooterAction {
@@ -27,4 +28,9 @@ export interface IModalState {
   content: ReactNode;
   size: 'small' | 'medium' | 'large';
   footer: IModalFooter;
+}
+
+export interface INotificationState {
+  type: 'buy' | 'sell' | 'info';
+  title: string;
 }

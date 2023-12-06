@@ -2,6 +2,7 @@ import { BasicCarCard } from "@/components/molecules/basic-card-component";
 import { Header } from "@/components/molecules/header/header";
 import { Footer } from "@/components/molecules/footer/footer";
 import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
+import { Notifications } from "@/components/molecules/notifications/notifications";
 
 export const MainGame = () => {
   const { removeCarFromList, cars } = useGenerateCards();
@@ -22,6 +23,7 @@ export const MainGame = () => {
           })}
         </div>
       </div>
+      <Notifications />
       <Footer />
     </>
   );

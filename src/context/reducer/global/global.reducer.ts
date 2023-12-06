@@ -1,4 +1,4 @@
-import { IModalState, IXmasHackState } from "@/context/state/state.types";
+import { IModalState, INotificationState, IXmasHackState } from "@/context/state/state.types";
 import { IXmasHackContextAction } from "@/context/context/context.types";
 import { EAction } from "@/context/actions/action.types";
 import { initState } from "@/context/state/init-state";
@@ -24,6 +24,12 @@ export const globalReducer = (
       return {
         ...state,
         modal: initState.modal,
+      };
+    }
+    case EAction.SET_NOTIFICATION_DATA: {
+      return {
+        ...state,
+        notifications: payload as INotificationState[],
       };
     }
     case EAction.INCREMENT_TIME_DAYS: {
