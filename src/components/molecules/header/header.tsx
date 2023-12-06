@@ -11,11 +11,11 @@ export const Header = () => {
 
   return (
     <header className="flex justify-between p-[32px] bg-cyan-600 text-black">
-      <div>
+      <div className="text-2xl">
         Current cash: <span className="font-semibold">{currentCash}</span>
       </div>
-      <div className="text-3xl">Road to Riches</div>
-      <div>
+      <div className="text-4xl font-bold">Road to Riches</div>
+      <div className="text-2xl">
         Goal cash:{" "}
         <span className="font-semibold">&pound;{goalCash / 1000}k</span>
       </div>
