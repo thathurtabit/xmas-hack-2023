@@ -11,7 +11,7 @@ export const MainGame = () => {
   return (
     <>
       <Header />
-      <div className="bg-emerald-900 p-[32px] pt-0 flex-1 flex flex-col justify-center">
+      <div className="bg-emerald-700 p-[32px] pt-0 flex-1 flex flex-col justify-center">
         <RoadAndParking />
         <Notifications />
         <Modal />
