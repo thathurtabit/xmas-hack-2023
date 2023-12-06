@@ -36,9 +36,9 @@ export const SelectedCarCard = ({
         removeCarFromSelectedList(id);
       }}
     >
-      <div className={`mt-8 flex flex-col w-64`}>
+      <div className="mt-8 flex flex-col w-64 bg-yellow-500 rounded-lg">
         <img src={image} className="max-w-full" />
-        <div className="flex items-center justify-center bg-yellow-500 -mt-8 text-xl">
+        <div className="flex items-center justify-center  -mt-8 text-xl">
           <div className="p-4 text-center text-white">
             Price:{" "}
             <span className="font-semibold">
