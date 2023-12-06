@@ -1,5 +1,5 @@
 export const startingCash = 10_000;
-export const goalCash = 200_000;
+export const goalCash = 50_000;
 export const priceChangeIntervalMS = 200;
 export const generateNewCardIntervalMS = 1500;
 export const notificationTimeoutMS = 3000;
