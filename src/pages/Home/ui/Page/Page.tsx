@@ -19,14 +19,15 @@ const Home: FC = () => {
 
   return (
     <>
-      <section className="min-h-screen bg-base-200 p-8 flex flex-col overflow-hidden">
-        {
-          gameStatus === GameStatus.Bankrupt || gameStatus === GameStatus.TimeUp
-            ? <GameOver reason={gameStatus} />
-            : gameStatus === GameStatus.Won
-              ? <GameWon score={10} />
-              : <MainGame />
-        }
+      <section className="min-h-screen bg-emerald-900 items-stretch self-stretch flex flex-col overflow-hidden">
+        {gameStatus === GameStatus.Bankrupt ||
+        gameStatus === GameStatus.TimeUp ? (
+          <GameOver reason={gameStatus} />
+        ) : gameStatus === GameStatus.Won ? (
+          <GameWon score={10} />
+        ) : (
+          <MainGame />
+        )}
       </section>
     </>
   );
