@@ -1,8 +1,9 @@
 import { startingCash } from "@/settings/settings";
-import { IXmasHackState } from "./state.types";
+import { GameStatus, IXmasHackState } from "./state.types";
 
 export const initState: IXmasHackState = {
   isGameRunning: false,
+  gameStatus: GameStatus.Paused,
   hasUnderstoodIntro: false,
   timeInDays: 0,
   moneyAmount: startingCash,

@@ -1,4 +1,4 @@
-import { IModalState, INotificationState, IXmasHackState } from "@/context/state/state.types";
+import { GameStatus, IModalState, INotificationState, IXmasHackState } from "@/context/state/state.types";
 import { IXmasHackContextAction } from "@/context/context/context.types";
 import { EAction } from "@/context/actions/action.types";
 import { initState } from "@/context/state/init-state";
@@ -12,6 +12,12 @@ export const globalReducer = (
       return {
         ...state,
         isGameRunning: payload as boolean,
+      };
+    }
+    case EAction.SET_GAME_STATUS: {
+      return {
+        ...state,
+        gameStatus: payload as GameStatus,
       };
     }
     case EAction.SET_HAS_UNDERSTOOD_INTRO: {

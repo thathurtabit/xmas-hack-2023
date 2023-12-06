@@ -1,8 +1,17 @@
 import { ButtonProps } from "@/components/atoms/button/button.types";
 import { ReactElement, ReactNode } from "react";
 
+export enum GameStatus {
+  Paused = 'paused',
+  InProgress = 'in-progress',
+  Won = 'won',
+  Bankrupt = 'bankrupt',
+  TimeUp = 'time-up',
+}
+
 export interface IXmasHackState {
   isGameRunning: boolean;
+  gameStatus: GameStatus;
   hasUnderstoodIntro: boolean;
   timeInDays: number;
   moneyAmount: number
