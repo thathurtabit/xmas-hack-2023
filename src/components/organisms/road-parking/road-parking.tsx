@@ -11,16 +11,20 @@ export const RoadAndParking = () => {
     selectedCars,
   } = useGenerateCards();
 
+  const roadMarkings = () => {
+    const markings = [];
+    for(let i = 0; i < 4; i++) {
+      markings.push(<div className="h-[40px] w-[200px] bg-white"></div>)
+    }
+    return markings;
+  }
 
   return (
     <>
       <div className="h-[360px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
         <div className="relative h-full">
           <div className="flex z-0 absolute justify-between w-full h-full items-center">
-              <div className="h-[40px] w-[200px] bg-white"></div>
-              <div className="h-[40px] w-[200px] bg-white"></div>
-              <div className="h-[40px] w-[200px] bg-white"></div>
-              <div className="h-[40px] w-[200px] bg-white"></div>
+            {roadMarkings()}
           </div>
         {cars.map((car) => {
           return (
