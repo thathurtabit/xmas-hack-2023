@@ -9,13 +9,16 @@ import { useContext, useEffect } from "react";
 
 export const TimeCounter = () => {
     const dispatch = useContext(XmasHackDispatchContext);
-    const { timeInDays } = useContext(XmasHackStateContext);
+    const { timeInDays, isGameRunning } = useContext(XmasHackStateContext);
 
     useEffect(() => {
+        if (!isGameRunning) {
+            return;
+        }
         const interval = setInterval(() => dispatch(incrementTimeInDays()), incrementTimeIntervalMS);
 
         return () => clearInterval(interval);
-    }, [dispatch]);
+    }, [dispatch, isGameRunning]);
 
     const formatTime = () => {
         const years = Math.floor(timeInDays / 365);

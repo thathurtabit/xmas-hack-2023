@@ -12,6 +12,7 @@ import { Button } from "../../atoms/button/button";
 import { IconCancel } from "../../icons/cancel/cancel";
 import { IconConfirm } from "../../icons/confirm/confirm";
 import { setModalClose } from "@/context/actions/modal/modal.action";
+import { setIsGameRunning } from "@/context/actions/is-game-running/is-game-running";
 
 export const Modal: FC = () => {
   const [showDialog, setShowDialog] = useState(false);
@@ -37,6 +38,7 @@ export const Modal: FC = () => {
 
   const handleCloseModal = () => {
     dispatch(setModalClose());
+    dispatch(setIsGameRunning(true));
   };
 
   const onCancel = () => {
@@ -54,6 +56,8 @@ export const Modal: FC = () => {
       return;
     }
 
+    dispatch(setIsGameRunning(!isOpen));
+
     const timeout = setTimeout(() => {
       setShowDialog(true);
     }, 200);
@@ -61,7 +65,7 @@ export const Modal: FC = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [isOpen]);
+  }, [dispatch, isOpen]);
 
   const getModalClasses = () => {
     switch (size) {
