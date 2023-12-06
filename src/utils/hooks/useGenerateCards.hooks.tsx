@@ -51,10 +51,9 @@ export const useGenerateCards = () => {
   };
 
   const addSelectedCarsToSelectedListAndRemoveFromCarList = (key: number) => {
-    const newCars = cars.filter((car) => car.id !== key);
     const chosenCars = cars.find((car) => car.id === key);
     setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
-    setCars(newCars);
+    removeCarsFromCarsList(key);
   };
 
   return {

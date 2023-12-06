@@ -6,6 +6,7 @@ import { XmasHackDispatchContext } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
 import { useCarCardTimer } from "@/utils/hooks/useCarCardTimer.hooks";
+import { carSpeed } from "@/settings/settings";
 
 interface BasicCardTypes extends CarTypes {
   addSelectedCarsToSelectedListAndRemoveFromCarList: (val: number) => void;
@@ -41,15 +42,14 @@ export const BasicCarCard = ({
   };
 
   const initialPosition = useMemo(() => Math.round(Math.random()) * 100, []);
-  const finalPosition = useMemo(() => 100 - initialPosition, [initialPosition]);
 
   return (
     <motion.button
       className="absolute"
-      initial={{ x: `${initialPosition}vw`, y: initialPosition ? 400 : 0 }}
-      animate={{ x: `${finalPosition}vw` }}
+      initial={{ x: `110vw`, y: initialPosition ? 400 : 0 }}
+      animate={{ x: `-25vw` }}
       transition={{
-        x: { duration: 5, ease: "linear" },
+        x: { duration: carSpeed, ease: "linear" },
         ease: "linear",
       }}
       onClick={() => {
