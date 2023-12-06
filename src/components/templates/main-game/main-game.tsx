@@ -3,17 +3,25 @@ import { Card } from "@/components/molecules/card/card";
 import { Header } from "@/components/molecules/header/header";
 import { Footer } from "@/components/molecules/footer/footer";
 import { XmasHackStateContext } from "@/context/context/context";
+import { carSpeed } from "@/settings/settings";
+import { motion } from "framer-motion";
 
 export const MainGame = () => {
 const { carData } = useContext(XmasHackStateContext);
-
-console.log(carData);
 
   return (
     <>
       <Header />
         <h3>On Market</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <motion.div 
+            className="flex gap-2"       
+            initial={{ x: `120vw`, y: 0 }}
+            animate={{ x: `-25vw` }}
+            transition={{
+                x: { duration: carSpeed, ease: "linear", repeat: Infinity, repeatType: "loop" },
+                ease: "linear",
+            }}
+        >
           {carData.filter((car) => car.onMarket === true).map((car, idx) => {
             return (
               <Card
@@ -22,9 +30,9 @@ console.log(carData);
               />
             );
           })}
-        </div>
+        </motion.div>
         <h3>Owned Cars</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="flex gap-2 max-w-5xl">
           {carData.filter((car) => car.onMarket === false).map((car, idx) => {
             return (
               <Card

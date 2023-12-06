@@ -6,6 +6,12 @@ export default {
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
       },
+      minWidth: {
+        '300': '300px',
+      },
+      maxWidth: {
+        '300': '300px',
+      },
     },
   },
   plugins: [require("daisyui")],

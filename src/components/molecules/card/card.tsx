@@ -70,11 +70,16 @@ export const Card = ({
   }
 
   return (
-    <div>
-      <img src={image} onClick={() => {
-        handleMoneyAmount();
-        handleSettingOnMarket((onMarket));
-      }} />
+    <div
+      className="min-w-300 max-w-300"            
+    >
+      <img 
+          src={image} 
+          onClick={() => {
+            handleMoneyAmount();
+            handleSettingOnMarket((onMarket));
+          }} 
+        />
         <div className="flex items-center justify-center">
           <div className="p-4 text-center text-white">
             Price:{" "}
