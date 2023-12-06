@@ -6,7 +6,7 @@ import { GameWonProps } from "./game-won.types";
 export const GameWon: FC<GameWonProps> = ({ score }) => {
 
   return (
-    <section className="fixed top-10 right-10 left-10 bottom-10 flex flex-col items-center justify-center">
+    <section className="h-screen flex flex-col items-center justify-center bg-green-900">
       <IconTrophy className="text-5xl animate-pulse mb-5" />
       <h2 className="text-6xl center font-[800] uppercase">You win</h2>
       <p>That&apos;s it.</p>

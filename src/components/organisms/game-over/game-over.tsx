@@ -14,13 +14,13 @@ export const GameOver: FC<GameOverProps> = ({ reason }) => {
     }
   }
   return (
-    <section className="fixed top-10 right-10 left-10 bottom-10 flex flex-col items-center justify-center">
+    <section className="h-screen flex flex-col items-center justify-center bg-red-900">
       <IconSad className="text-5xl animate-pulse mb-5" />
       <h2 className="text-6xl center font-[800] uppercase">Game over</h2>
       <p>How pathetic. Your parents must be so proud.</p>
       <p className="mb-10">Everyone was right about you.</p>
       <p className="text-2xl center font-[300] uppercase mb-2">{getReasonCopy()}</p>
-      <Button variant="primary" onClick={() => location.reload()}>Try again</Button>
+      <Button variant="default" onClick={() => location.reload()}>Try again</Button>
     </section >
   );
 };
