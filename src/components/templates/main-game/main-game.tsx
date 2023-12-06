@@ -5,27 +5,47 @@ import { useGenerateCards } from "@/utils/hooks/useGenerateCards.hooks";
 import { Notifications } from "@/components/molecules/notifications/notifications";
 import { useIntroModal } from "@/utils/hooks/use-intro-modal.hook";
 import { Modal } from "@/components/molecules/modal/modal";
+import { SelectedCarCard } from "@/components/molecules/selected-cars-card";
 
 export const MainGame = () => {
-  const { removeCarFromList, cars } = useGenerateCards();
   useIntroModal();
+  const {
+    removeCarFromSelectedList,
+    cars,
+    addSelectedCarsToSelectedListAndRemoveFromCarList,
+    selectedCars,
+    removeCarsFromCarsList,
+  } = useGenerateCards();
 
   return (
     <>
       <Header />
-      <div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-          {cars.map((car) => {
-            return (
-              <BasicCarCard
-                {...car}
-                removeCarFromList={removeCarFromList}
-                key={car.id}
-              />
-            );
-          })}
-        </div>
+      <div className="h-[750px]">
+        {cars.map((car) => {
+          return (
+            <BasicCarCard
+              {...car}
+              addSelectedCarsToSelectedListAndRemoveFromCarList={
+                addSelectedCarsToSelectedListAndRemoveFromCarList
+              }
+              removeCarsFromCarsList={removeCarsFromCarsList}
+              key={car.id}
+            />
+          );
+        })}
       </div>
+      <div>
+        {selectedCars.map((car) => {
+          return (
+            <SelectedCarCard
+              {...car}
+              removeCarFromSelectedList={removeCarFromSelectedList}
+              key={car.id}
+            />
+          );
+        })}
+      </div>
+
       <Notifications />
       <Modal />
       <Footer />

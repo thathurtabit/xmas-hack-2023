@@ -9,12 +9,14 @@ import { useContext, useEffect, useState } from "react";
 export interface CarTypes {
   id: number;
   starting: number;
+  price: number;
   max: number;
   min: number;
 }
 
 export const useGenerateCards = () => {
   const [cars, setCars] = useState<CarTypes[]>([]);
+  const [selectedCars, setSelectedCars] = useState<CarTypes[]>([]);
 
   const { moneyAmount } = useContext(XmasHackStateContext);
 
@@ -29,6 +31,7 @@ export const useGenerateCards = () => {
             // TODO: use better key than random number
             id: Math.floor(Math.random() * 100) * (starting * 1.1),
             starting,
+            price: starting,
             max: Math.floor(starting * priceChangeMultiplierUPPER),
             min: Math.floor(starting * priceChangeMultiplierLOWER),
           });
@@ -39,9 +42,27 @@ export const useGenerateCards = () => {
     return () => clearInterval(interval);
   }, [moneyAmount, cars]);
 
-  const removeCarFromList = (key: number) => {
+  const removeCarFromSelectedList = (key: number) => {
+    const newCars = selectedCars.filter((car) => car.id !== key);
+    setSelectedCars(newCars);
+  };
+
+  const removeCarsFromCarsList = (key: number) => {
     const newCars = cars.filter((car) => car.id !== key);
     setCars(newCars);
   };
-  return { removeCarFromList, cars };
+
+  const addSelectedCarsToSelectedListAndRemoveFromCarList = (key: number) => {
+    const chosenCars = cars.find((car) => car.id === key);
+    setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
+    removeCarsFromCarsList(key);
+  };
+
+  return {
+    removeCarFromSelectedList,
+    cars,
+    addSelectedCarsToSelectedListAndRemoveFromCarList,
+    selectedCars,
+    removeCarsFromCarsList,
+  };
 };
