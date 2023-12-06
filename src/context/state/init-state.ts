@@ -27,5 +27,6 @@ export const initState: IXmasHackState = {
         variant: 'secondary',
       },
     },
-  }
+  },
+  notifications: [],
 };

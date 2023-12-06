@@ -5,6 +5,7 @@ import { Footer } from "@/components/molecules/footer/footer";
 import { XmasHackStateContext } from "@/context/context/context";
 import { carSpeed } from "@/settings/settings";
 import { motion } from "framer-motion";
+import { Notifications } from "@/components/molecules/notifications/notifications";
 
 export const MainGame = () => {
 const { carData } = useContext(XmasHackStateContext);
@@ -42,6 +43,7 @@ const { carData } = useContext(XmasHackStateContext);
             );
           })}
         </div>
+      <Notifications />
       <Footer />
     </>
   );

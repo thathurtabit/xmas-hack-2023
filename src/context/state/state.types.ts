@@ -7,6 +7,7 @@ export interface IXmasHackState {
   moneyAmount: number
   modal: IModalState;
   carData: CarTypes[];
+  notifications: INotificationState[];
 }
 
 export interface CarTypes {
@@ -38,4 +39,9 @@ export interface IModalState {
   content: ReactNode;
   size: 'small' | 'medium' | 'large';
   footer: IModalFooter;
+}
+
+export interface INotificationState {
+  type: 'buy' | 'sell' | 'info';
+  title: string;
 }
