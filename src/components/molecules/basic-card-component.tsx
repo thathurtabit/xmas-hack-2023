@@ -53,9 +53,9 @@ export const BasicCarCard = ({
 
   return (
     <motion.button
-      className="absolute z-1"
-      initial={{ x: `110vw`, y: 0 }}
-      animate={{ x: `-25vw` }}
+      className="absolute z-1 top-1/2 -translate-y-1/2 m-0"
+      initial={{ x: `110vw`, y: `-50%` }}
+      animate={{ x: `-25vw`, y: `-50%` }}
       transition={{
         x: { duration: carSpeed, ease: "linear" },
         ease: "linear",
