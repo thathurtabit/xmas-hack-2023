@@ -12,7 +12,7 @@ export const GameWon: FC<GameWonProps> = ({ score }) => {
       <p>That&apos;s it.</p>
       <p className="mb-10">Go home.</p>
       <p className="text-2xl center font-[300] uppercase mb-2">Your score was {score}</p>
-      <Button variant="primary" onClick={() => location.reload()}>Play again</Button>
+      <Button variant="default" onClick={() => location.reload()}>Play again</Button>
     </section>
   );
 };
