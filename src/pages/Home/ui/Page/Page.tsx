@@ -1,19 +1,32 @@
 import { GameOver } from "@/components/organisms/game-over/game-over";
-import { GameOverReason } from "@/components/organisms/game-over/game-over.types";
+import { GameWon } from "@/components/organisms/game-won/game-won";
 import { MainGame } from "@/components/templates/main-game/main-game";
-import { XmasHackStateContext } from "@/context/context/context";
-import { minimumCashUntilBankruptcy, numberOfDaysUntilGameOver } from "@/settings/settings";
+import { setGameStatus } from "@/context/actions/game-status/game-status";
+import { XmasHackDispatchContext, XmasHackStateContext } from "@/context/context/context";
+import { GameStatus } from "@/context/state/state.types";
+import { goalCash, minimumCashUntilBankruptcy } from "@/settings/settings";
 import { FC, useContext } from "react";
 
 const Home: FC = () => {
-  const { moneyAmount, timeInDays } = useContext(XmasHackStateContext);
+  const dispatch = useContext(XmasHackDispatchContext);
+  const { moneyAmount, gameStatus } = useContext(XmasHackStateContext);
 
-  const gameOverReason = moneyAmount <= minimumCashUntilBankruptcy ? GameOverReason.Bankrupt : timeInDays >= numberOfDaysUntilGameOver ? GameOverReason.Time : undefined;
+  const financialStatus = moneyAmount <= minimumCashUntilBankruptcy ? GameStatus.Bankrupt : moneyAmount >= goalCash ? GameStatus.Won : null;
+
+  if (gameStatus === GameStatus.InProgress && financialStatus) {
+    dispatch(setGameStatus(financialStatus));
+  }
 
   return (
     <>
       <section className="min-h-screen bg-base-200 p-8 flex flex-col overflow-hidden">
-        {gameOverReason ? <GameOver reason={gameOverReason} /> : <MainGame />}
+        {
+          gameStatus === GameStatus.Bankrupt || gameStatus === GameStatus.TimeUp
+            ? <GameOver reason={gameStatus} />
+            : gameStatus === GameStatus.Won
+              ? <GameWon score={10} />
+              : <MainGame />
+        }
       </section>
     </>
   );

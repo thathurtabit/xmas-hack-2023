@@ -1,14 +1,15 @@
 import { IconSad } from "@/components/icons/sad/sad";
 import { FC } from "react";
-import { GameOverProps, GameOverReason } from "./game-over.types";
+import { GameOverProps } from "./game-over.types";
 import { Button } from "@/components/atoms/button/button";
+import { GameStatus } from "@/context/state/state.types";
 
 export const GameOver: FC<GameOverProps> = ({ reason }) => {
   const getReasonCopy = () => {
     switch (reason) {
-      case GameOverReason.Bankrupt:
+      case GameStatus.Bankrupt:
         return "You ran out of money";
-      case GameOverReason.Time:
+      case GameStatus.TimeUp:
         return "You ran out of time";
     }
   }

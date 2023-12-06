@@ -1,8 +1,5 @@
-export enum GameOverReason {
-    Bankrupt = 'bankrupt',
-    Time = 'time',
-}
+import { GameStatus } from "@/context/state/state.types";
 
 export interface GameOverProps {
-    reason: GameOverReason;
+    reason: GameStatus.Bankrupt | GameStatus.TimeUp
 }
