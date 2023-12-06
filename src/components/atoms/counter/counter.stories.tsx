@@ -1,19 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TimeCounter as CouterWithoutContext } from "./counter";
+import { TimeCounter } from "./counter";
 import { XmasHackProvider } from "@/context/context/context";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-
-const TimeCounter = () => {
-  return (
-    <>
-      <XmasHackProvider>
-        <CouterWithoutContext />
-      </XmasHackProvider>
-    </>
-  );
-}
 
 const meta = {
   title: "Atoms/TimeCounter",
@@ -22,7 +12,13 @@ const meta = {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-
+  decorators: [
+    (Story) => (
+      <XmasHackProvider>
+        <Story />
+      </XmasHackProvider>
+    ),
+  ],
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
