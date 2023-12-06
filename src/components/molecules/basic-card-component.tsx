@@ -1,4 +1,4 @@
-import { useState, useContext, useMemo } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
 import cn from "classnames";
@@ -48,12 +48,10 @@ export const BasicCarCard = ({
     }
   };
 
-  const initialPosition = useMemo(() => Math.round(Math.random()) * 100, []);
-
   return (
     <motion.button
       className="absolute"
-      initial={{ x: `110vw`, y: initialPosition ? 400 : 0 }}
+      initial={{ x: `110vw`, y: 0 }}
       animate={{ x: `-25vw` }}
       transition={{
         x: { duration: carSpeed, ease: "linear" },

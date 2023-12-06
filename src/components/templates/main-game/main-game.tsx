@@ -20,7 +20,7 @@ export const MainGame = () => {
   return (
     <>
       <Header />
-      <div className="h-[750px]">
+      <div className="h-[400px]">
         {cars.map((car) => {
           return (
             <BasicCarCard
