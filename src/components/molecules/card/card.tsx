@@ -60,7 +60,7 @@ export const Card = ({
           title: `You bought a car for £${price.toLocaleString()}`,
           type: "buy",
         }),
-      );
+      )
     }
     if (onMarket && price > moneyAmount) {
       setCanAfford(false);
@@ -72,7 +72,7 @@ export const Card = ({
           title: `You sold a car for £${price.toLocaleString()}`,
           type: "sell",
         }),
-      );
+      )
     }
   };
 

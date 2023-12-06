@@ -20,6 +20,16 @@ export interface CarTypes {
   max: number
 }
 
+export interface CarTypes {
+  id: string
+  title?: string
+  image: string
+  onMarket: boolean
+  starting: number
+  min: number
+  max: number
+}
+
 export interface IModalFooterAction {
   onClick: () => void;
   loading?: boolean;

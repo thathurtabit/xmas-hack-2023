@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { Card } from "@/components/molecules/card/card";
 import { Header } from "@/components/molecules/header/header";
 import { Footer } from "@/components/molecules/footer/footer";
+import { Notifications } from "@/components/molecules/notifications/notifications";
 import { XmasHackStateContext } from "@/context/context/context";
 import { carSpeed } from "@/settings/settings";
 import { motion } from "framer-motion";
-import { Notifications } from "@/components/molecules/notifications/notifications";
 
 export const MainGame = () => {
 const { carData } = useContext(XmasHackStateContext);
