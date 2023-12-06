@@ -10,7 +10,7 @@ export const Header = () => {
       : `£${moneyAmount.toLocaleString()}`;
 
   return (
-    <header className="flex justify-between">
+    <header className="flex justify-between p-[32px] bg-cyan-600 text-black">
       <div>
         Current cash: <span className="font-semibold">{currentCash}</span>
       </div>

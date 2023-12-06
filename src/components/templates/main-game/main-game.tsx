@@ -10,11 +10,13 @@ export const MainGame = () => {
 
   return (
     <>
-      <Header />
-      <RoadAndParking />
-      <Notifications />
-      <Modal />
-      <Footer />
+        <Header />
+        <div className="bg-emerald-900 p-[32px] pt-0">
+        <RoadAndParking />
+        <Notifications />
+        <Modal />
+        <Footer />
+        </div>
     </>
   );
 };
