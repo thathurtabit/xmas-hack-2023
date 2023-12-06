@@ -10,7 +10,6 @@ export enum GameStatus {
 }
 
 export interface IXmasHackState {
-  isGameRunning: boolean;
   gameStatus: GameStatus;
   hasUnderstoodIntro: boolean;
   timeInDays: number;

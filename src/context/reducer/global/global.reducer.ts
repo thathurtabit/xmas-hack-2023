@@ -8,12 +8,6 @@ export const globalReducer = (
   { type, payload }: IXmasHackContextAction,
 ): IXmasHackState => {
   switch (type) {
-    case EAction.SET_IS_GAME_RUNNING: {
-      return {
-        ...state,
-        isGameRunning: payload as boolean,
-      };
-    }
     case EAction.SET_GAME_STATUS: {
       return {
         ...state,

@@ -3,22 +3,23 @@ import {
     XmasHackDispatchContext,
     XmasHackStateContext,
 } from "@/context/context/context";
+import { GameStatus } from "@/context/state/state.types";
 import { incrementTimeIntervalMS } from "@/settings/settings";
 import { pluraliseString } from "@/utils/pluralise-string";
 import { useContext, useEffect } from "react";
 
 export const TimeCounter = () => {
     const dispatch = useContext(XmasHackDispatchContext);
-    const { timeInDays, isGameRunning } = useContext(XmasHackStateContext);
+    const { timeInDays, gameStatus } = useContext(XmasHackStateContext);
 
     useEffect(() => {
-        if (!isGameRunning) {
+        if (gameStatus !== GameStatus.InProgress) {
             return;
         }
         const interval = setInterval(() => dispatch(incrementTimeInDays()), incrementTimeIntervalMS);
 
         return () => clearInterval(interval);
-    }, [dispatch, isGameRunning]);
+    }, [dispatch, gameStatus]);
 
     const formatTime = () => {
         const years = Math.floor(timeInDays / 365);
