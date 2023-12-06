@@ -7,6 +7,7 @@ import { CarTypes } from "@/utils/hooks/use-generate-cards.hooks";
 import { setNewNotification } from "@/context/actions/notification/notification.action";
 import { useCarCardTimer } from "@/utils/hooks/use-car-card-timer.hooks";
 import { carSpeed } from "@/settings/settings";
+import { IconError } from "../icons/error/error";
 
 interface BasicCardTypes extends CarTypes {
   addSelectedCarsToSelectedListAndRemoveFromCarList: (
@@ -56,6 +57,7 @@ export const BasicCarCard = ({
       className="absolute z-1 top-1/2 -translate-y-1/2 m-0"
       initial={{ x: `110vw`, y: `-50%` }}
       animate={{ x: `-25vw`, y: `-50%` }}
+      exit={{ x: `-25vw`, y: `-50%` }}
       transition={{
         x: { duration: carSpeed, ease: "linear" },
         ease: "linear",
@@ -91,8 +93,8 @@ export const BasicCarCard = ({
               setCanAfford(true);
             }}
           >
-            <div className="w-4/5 py-8 mx-auto border-2 border-gray-500 rounded-md bg-teal-600 text-white font-bold text-xl">
-              Not enough dollar
+            <div className="w-4/5 p-4 mx-auto rounded-md bg-red-600 text-white font-bold text-lg flex items-center justify-center gap-2">
+              <IconError /> <span>Not enough dollar</span>
             </div>
           </motion.div>
         )}

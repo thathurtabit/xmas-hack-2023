@@ -21,7 +21,7 @@ export const RoadAndParking = () => {
 
   return (
     <>
-      <div className="h-[500px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
+      <div className="h-[400px] mt-[24px] mb-[24px] bg-black overflow-hidden relative">
         <div className="relative h-full">
           <div className="flex z-0 absolute justify-between w-full h-full items-center">
             {roadMarkings()}
@@ -45,7 +45,7 @@ export const RoadAndParking = () => {
           className="w-[150px] h-[160px] mr-[30px]"
           src="/images/parking-sign.png"
         />
-        <div className="flex flex-wrap bg-slate-800 p-[20px] w-full gap-[20px]">
+        <div className="flex flex-wrap bg-slate-800 p-[20px] w-full h-[260px] gap-[20px]">
           {selectedCars.map((car) => {
             return (
               <SelectedCarCard
