@@ -3,6 +3,7 @@ import {
     XmasHackDispatchContext,
     XmasHackStateContext,
 } from "@/context/context/context";
+import { incrementTimeIntervalMS } from "@/settings/settings";
 import { pluraliseString } from "@/utils/pluralise-string";
 import { useContext, useEffect } from "react";
 
@@ -11,7 +12,7 @@ export const TimeCounter = () => {
     const { timeInDays } = useContext(XmasHackStateContext);
 
     useEffect(() => {
-        const interval = setInterval(() => dispatch(incrementTimeInDays()), 1000);
+        const interval = setInterval(() => dispatch(incrementTimeInDays()), incrementTimeIntervalMS);
 
         return () => clearInterval(interval);
     }, [dispatch]);

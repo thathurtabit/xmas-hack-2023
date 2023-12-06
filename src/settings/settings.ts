@@ -6,3 +6,5 @@ export const priceChangeMultiplierUPPER = 1.1;
 export const priceChangeMultiplierLOWER = 0.9;
 export const carSpeed = 5
 export const notificationTimeoutMS = 3000;
+export const incrementTimeIntervalMS = 164;
+export const numberOfDaysUntilGameOver = 730;
