@@ -1,10 +1,11 @@
 import { incrementTimeInDays } from "@/context/actions/example/hello-world";
+import { setGameStatus } from "@/context/actions/game-status/game-status";
 import {
     XmasHackDispatchContext,
     XmasHackStateContext,
 } from "@/context/context/context";
 import { GameStatus } from "@/context/state/state.types";
-import { incrementTimeIntervalMS } from "@/settings/settings";
+import { incrementTimeIntervalMS, numberOfDaysUntilGameOver } from "@/settings/settings";
 import { pluraliseString } from "@/utils/pluralise-string";
 import { useContext, useEffect } from "react";
 
@@ -12,14 +13,19 @@ export const TimeCounter = () => {
     const dispatch = useContext(XmasHackDispatchContext);
     const { timeInDays, gameStatus } = useContext(XmasHackStateContext);
 
+    const timeUp = timeInDays >= numberOfDaysUntilGameOver;
+
     useEffect(() => {
-        if (gameStatus !== GameStatus.InProgress) {
-            return;
-        }
-        const interval = setInterval(() => dispatch(incrementTimeInDays()), incrementTimeIntervalMS);
+        if (gameStatus !== GameStatus.InProgress) return;
+
+        if (timeUp) dispatch(setGameStatus(GameStatus.TimeUp));
+
+        const interval = setInterval(() => {
+            dispatch(incrementTimeInDays())
+        }, incrementTimeIntervalMS);
 
         return () => clearInterval(interval);
-    }, [dispatch, gameStatus]);
+    }, [dispatch, gameStatus, timeUp]);
 
     const formatTime = () => {
         const years = Math.floor(timeInDays / 365);
