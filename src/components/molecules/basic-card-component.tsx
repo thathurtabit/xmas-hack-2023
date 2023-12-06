@@ -5,13 +5,7 @@ import cn from "classnames";
 import { XmasHackDispatchContext } from "@/context/context/context";
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
-import { priceChangeIntervalMS } from "@/settings/settings";
 import { setNewNotification } from "@/context/actions/notification/notification.action";
-
-enum ActionTypes {
-  INCREASE = "increase",
-  DECREASE = "decrease",
-}
 import { useCarCardTimer } from "@/utils/hooks/useCarCardTimer.hooks";
 import { carSpeed } from "@/settings/settings";
 
@@ -52,15 +46,6 @@ export const BasicCarCard = ({
     if (price > moneyAmount) {
       setCanAfford(false);
     }
-    // if (selected) {
-    //   dispatch(ammendMoneyAmount(moneyAmount + price));
-    //   dispatch(
-    //     setNewNotification({
-    //       title: `You sold a car for £${price.toLocaleString()}`,
-    //       type: "sell",
-    //     }),
-    //   );
-    // }
   };
 
   const initialPosition = useMemo(() => Math.round(Math.random()) * 100, []);
