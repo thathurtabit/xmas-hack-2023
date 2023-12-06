@@ -46,9 +46,15 @@ export const SelectedCarCard = ({
             </span>
           </div>
           {actionType === ActionTypes.INCREASE ? (
-            <GoArrowUp className="bg-green-500 rounded-full text-white" />
+            <GoArrowUp
+              className="bg-green-500 rounded-full fill-white p-1"
+              size="2.5rem"
+            />
           ) : (
-            <GoArrowDown className="bg-red-500 rounded-full text-white" />
+            <GoArrowDown
+              className="bg-red-500 rounded-full fill-white p-1"
+              size="2.5rem"
+            />
           )}
         </div>
       </div>
