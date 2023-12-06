@@ -9,6 +9,7 @@ import {
 import { ammendMoneyAmount } from "@/context/actions/example/hello-world";
 import { CarTypes } from "@/utils/hooks/useGenerateCards.hooks";
 import { priceChangeIntervalMS } from "@/settings/settings";
+import { setNewNotification } from "@/context/actions/notification/notification.action";
 
 enum ActionTypes {
   INCREASE = "increase",
@@ -61,12 +62,24 @@ export const BasicCarCard = ({
   const handleMoneyAmount = () => {
     if (!selected && price < moneyAmount) {
       dispatch(ammendMoneyAmount(moneyAmount - price));
+      dispatch(
+        setNewNotification({
+          title: `You bought a car for £${price.toLocaleString()}`,
+          type: "buy",
+        }),
+      );
     }
     if (!selected && price > moneyAmount) {
       setCanAfford(false);
     }
     if (selected) {
       dispatch(ammendMoneyAmount(moneyAmount + price));
+      dispatch(
+        setNewNotification({
+          title: `You sold a car for £${price.toLocaleString()}`,
+          type: "sell",
+        }),
+      );
     }
   };
 
@@ -132,6 +145,6 @@ export const BasicCarCard = ({
           </motion.div>
         )}
       </div>
-    </motion.button >
+    </motion.button>
   );
 };
