@@ -52,8 +52,7 @@ export const useGenerateCards = () => {
   const getCarPrice = (key: number) =>
     selectedCars.find((car) => car.id === key)?.price;
 
-  const removeCarFromSelectedList = (key: number) => {
-    const soldCarPrice = getCarPrice(key);
+  const removeCarFromSelectedList = (key: number, soldCarPrice: number) => {
     const newCars = selectedCars.filter((car) => car.id !== key);
     if (soldCarPrice) {
       dispatch(
@@ -71,9 +70,14 @@ export const useGenerateCards = () => {
     setCars(newCars);
   };
 
-  const addSelectedCarsToSelectedListAndRemoveFromCarList = (key: number) => {
+  const addSelectedCarsToSelectedListAndRemoveFromCarList = (
+    key: number,
+    price: number,
+  ) => {
     const boughtCarPrice = getCarPrice(key);
+
     const chosenCars = cars.find((car) => car.id === key);
+    (chosenCars as CarTypes).price = price;
     setSelectedCars((prevState) => prevState.concat(chosenCars as CarTypes));
     if (boughtCarPrice) {
       dispatch(
@@ -83,6 +87,7 @@ export const useGenerateCards = () => {
         }),
       );
     }
+
     removeCarsFromCarsList(key);
   };
 

@@ -9,7 +9,10 @@ import { useCarCardTimer } from "@/utils/hooks/useCarCardTimer.hooks";
 import { carSpeed } from "@/settings/settings";
 
 interface BasicCardTypes extends CarTypes {
-  addSelectedCarsToSelectedListAndRemoveFromCarList: (val: number) => void;
+  addSelectedCarsToSelectedListAndRemoveFromCarList: (
+    val: number,
+    price: number,
+  ) => void;
   removeCarsFromCarsList: (val: number) => void;
 }
 
@@ -34,7 +37,7 @@ export const BasicCarCard = ({
 
   const handleMoneyAmount = () => {
     if (price < moneyAmount) {
-      addSelectedCarsToSelectedListAndRemoveFromCarList(id);
+      addSelectedCarsToSelectedListAndRemoveFromCarList(id, price);
       dispatch(ammendMoneyAmount(moneyAmount - price));
       dispatch(
         setNewNotification({

@@ -9,7 +9,7 @@ import {
 } from "@/utils/hooks/useCarCardTimer.hooks";
 
 interface BasicCardTypes extends CarTypes {
-  removeCarFromSelectedList: (val: number) => void;
+  removeCarFromSelectedList: (val: number, price: number) => void;
 }
 
 export const SelectedCarCard = ({
@@ -24,7 +24,6 @@ export const SelectedCarCard = ({
 
   const { price, moneyAmount, actionType } = useCarCardTimer({
     starting,
-
     max,
     min,
   });
@@ -33,7 +32,7 @@ export const SelectedCarCard = ({
     <button
       onClick={() => {
         dispatch(ammendMoneyAmount(moneyAmount + price));
-        removeCarFromSelectedList(id);
+        removeCarFromSelectedList(id, price);
       }}
     >
       <div className="mt-8 flex flex-col w-64 bg-yellow-500 rounded-lg">
