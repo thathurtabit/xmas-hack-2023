@@ -64,10 +64,10 @@ export const BasicCarCard = ({
         removeCarsFromCarsList(id);
       }}
     >
-      <div className={`mt-8 w-52 rounded-md flex flex-col`}>
-        <img src={image} />
+      <div className={`mt-8 w-72 rounded-md flex flex-col`}>
+        <img src={image} className="max-w-full" />
         <div className="flex items-center justify-center">
-          <div className="py-1 px-2 -mt-4 text-center text-white bg-yellow-500">
+          <div className="py-1 px-2 -mt-8 text-center text-white text-2xl">
             Price:{" "}
             <span className="font-semibold">
               &pound;{price.toLocaleString()}
