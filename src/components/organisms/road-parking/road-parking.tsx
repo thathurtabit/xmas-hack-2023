@@ -13,8 +13,8 @@ export const RoadAndParking = () => {
 
   const roadMarkings = () => {
     const markings = [];
-    for(let i = 0; i < 4; i++) {
-      markings.push(<div className="h-[40px] w-1/6 bg-white"></div>)
+    for (let i = 0; i < 4; i++) {
+      markings.push(<div className="h-[40px] w-1/6 bg-white" key={i}></div>)
     }
     return markings;
   }
@@ -26,18 +26,18 @@ export const RoadAndParking = () => {
           <div className="flex z-0 absolute justify-between w-full h-full items-center">
             {roadMarkings()}
           </div>
-        {cars.map((car) => {
-          return (
-            <BasicCarCard
-              {...car}
-              addSelectedCarsToSelectedListAndRemoveFromCarList={
-                addSelectedCarsToSelectedListAndRemoveFromCarList
-              }
-              removeCarsFromCarsList={removeCarsFromCarsList}
-              key={car.id}
-            />
-          );
-        })}
+          {cars.map((car) => {
+            return (
+              <BasicCarCard
+                {...car}
+                addSelectedCarsToSelectedListAndRemoveFromCarList={
+                  addSelectedCarsToSelectedListAndRemoveFromCarList
+                }
+                removeCarsFromCarsList={removeCarsFromCarsList}
+                key={car.id}
+              />
+            );
+          })}
         </div>
       </div>
       <div className="flex">
