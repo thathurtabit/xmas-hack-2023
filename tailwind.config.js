@@ -7,7 +7,7 @@ export default {
         raleway: ["Raleway", "sans-serif"],
       },
       animation: {
-        bounce: "bounce 1s ease 5",
+        bounce: "bounce 1s ease forwards 5",
       },
     },
   },
