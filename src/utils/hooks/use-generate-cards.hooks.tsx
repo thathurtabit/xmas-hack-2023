@@ -10,6 +10,7 @@ import {
 } from "@/settings/settings";
 import { useContext, useEffect, useState } from "react";
 import { randomNumberRange } from "../randomise-number-range";
+import { formatCurrency } from "../format-currency";
 
 export interface CarTypes {
   id: number;
@@ -57,7 +58,7 @@ export const useGenerateCards = () => {
     if (soldCarPrice) {
       dispatch(
         setNewNotification({
-          title: `You sold a car for £${soldCarPrice?.toLocaleString()}`,
+          title: `You sold a vehicle for £${formatCurrency(soldCarPrice)}`,
           type: "sell",
         }),
       );
@@ -82,7 +83,7 @@ export const useGenerateCards = () => {
     if (boughtCarPrice) {
       dispatch(
         setNewNotification({
-          title: `You bought a car for £${boughtCarPrice?.toLocaleString()}`,
+          title: `You bought a vehicle for £${formatCurrency(boughtCarPrice)}`,
           type: "buy",
         }),
       );

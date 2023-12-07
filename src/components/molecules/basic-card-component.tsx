@@ -8,6 +8,7 @@ import { setNewNotification } from "@/context/actions/notification/notification.
 import { useCarCardTimer } from "@/utils/hooks/use-car-card-timer.hooks";
 import { carSpeed } from "@/settings/settings";
 import { IconError } from "../icons/error/error";
+import { formatCurrency } from "@/utils/format-currency";
 
 interface BasicCardTypes extends CarTypes {
   addSelectedCarsToSelectedListAndRemoveFromCarList: (
@@ -42,7 +43,7 @@ export const BasicCarCard = ({
       dispatch(ammendMoneyAmount(moneyAmount - price));
       dispatch(
         setNewNotification({
-          title: `You bought a car for £${price.toLocaleString()}`,
+          title: `You bought a vehicle for £${formatCurrency(price)}`,
           type: "buy",
         }),
       );
@@ -75,7 +76,7 @@ export const BasicCarCard = ({
           <div className="py-1 px-8 -mt-6 text-center text-white text-2xl bg-teal-700 rounded-md">
             Price:{" "}
             <span className="font-semibold">
-              &pound;{price.toLocaleString()}
+              &pound;{formatCurrency(price)}
             </span>
           </div>
         </div>

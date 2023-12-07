@@ -7,6 +7,7 @@ import {
   ActionTypes,
   useCarCardTimer,
 } from "@/utils/hooks/use-car-card-timer.hooks";
+import { formatCurrency } from "@/utils/format-currency";
 
 interface BasicCardTypes extends CarTypes {
   removeCarFromSelectedList: (val: number, price: number) => void;
@@ -41,7 +42,7 @@ export const SelectedCarCard = ({
           <div className="p-4 text-center text-white">
             Price:{" "}
             <span className="font-semibold">
-              &pound;{price.toLocaleString()}
+              &pound;{formatCurrency(price)}
             </span>
           </div>
           {actionType === ActionTypes.INCREASE ? (
