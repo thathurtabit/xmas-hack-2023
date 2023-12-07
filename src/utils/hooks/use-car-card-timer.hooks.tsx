@@ -34,9 +34,11 @@ export const useCarCardTimer = ({
           setActionType(ActionTypes.INCREASE);
         }
 
-        return actionType === ActionTypes.INCREASE
+        const newPrice = actionType === ActionTypes.INCREASE
           ? prevState + 327
           : prevState - 155;
+
+        return newPrice <= 0 ? 1 : newPrice;
       });
     }, priceChangeIntervalMS);
 
