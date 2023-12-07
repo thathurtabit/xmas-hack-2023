@@ -45,7 +45,7 @@ export const RoadAndParking = () => {
           className="w-[150px] h-[160px] mr-[30px] animate-bounce my-auto"
           src="/images/parking-sign.png"
         />
-        <div className="flex flex-wrap bg-slate-800 p-[20px] w-full h-[260px] gap-[20px]">
+        <div className="flex flex-nowrap bg-slate-800 p-[20px] w-full h-[260px] gap-[20px]">
           {selectedCars.map((car) => {
             return (
               <SelectedCarCard
