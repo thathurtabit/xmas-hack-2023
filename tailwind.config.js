@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
       },
+      animation: {
+        bounce: "bounce 1s ease 5",
+      },
     },
   },
   plugins: [require("daisyui")],
