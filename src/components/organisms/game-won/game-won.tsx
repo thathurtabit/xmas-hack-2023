@@ -5,6 +5,28 @@ import { GameWonProps } from "./game-won.types";
 import { motion } from "framer-motion";
 
 export const GameWon: FC<GameWonProps> = ({ score }) => {
+  const getScoreCopy = () => {
+    const scoreBracket = Math.floor(score / 100);
+    switch (scoreBracket) {
+      case 0:
+        return "You can do better than that.";
+      case 1:
+        return "Not bad.";
+      case 2:
+        return "You're getting there.";
+      case 3:
+        return "You're pretty good.";
+      case 4:
+        return "You're really good.";
+      case 5:
+        return "You're amazing.";
+      case 6:
+        return "You're a legend.";
+      default:
+        return "Did you cheat?";
+    }
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0, scale: 2 }}
@@ -18,7 +40,7 @@ export const GameWon: FC<GameWonProps> = ({ score }) => {
       <p>That&apos;s it.</p>
       <p className="mb-10">Go home.</p>
       <p className="text-2xl center font-[300] uppercase mb-2">
-        Your score was {score}
+        You won with {score} days left. {getScoreCopy()}
       </p>
       <Button variant="default" onClick={() => location.reload()}>
         Play again
