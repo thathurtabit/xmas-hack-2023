@@ -22,7 +22,7 @@ export const useIntroModal = () => {
     const introModalData: IModalState[] = [
       {
         title: "Welcome to Road to Riches",
-        content: <img src="/images/logo.png" className="w-[280px]" />,
+        content: <img src="/images/logo.png" className="w-[280px] m-auto" />,
         isOpen: true,
         size: "small",
         footer: {
