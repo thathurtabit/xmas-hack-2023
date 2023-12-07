@@ -20,7 +20,7 @@ export const GameOver: FC<GameOverProps> = ({ reason }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 2 }}
       transition={{ duration: 0.5 }}
-      className="h-screen flex flex-col items-center justify-center bg-red-900"
+      className="h-screen flex flex-col items-center justify-center bg-red-900 text-white"
     >
       <IconSad className="text-5xl animate-pulse mb-5" />
       <h2 className="text-6xl center font-[800] uppercase">Game over</h2>
