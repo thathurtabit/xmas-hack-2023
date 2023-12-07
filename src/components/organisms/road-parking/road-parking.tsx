@@ -42,7 +42,7 @@ export const RoadAndParking = () => {
       </div>
       <div className="flex">
         <img
-          className="w-[150px] h-[160px] mr-[30px]"
+          className="w-[150px] h-[160px] mr-[30px] animate-bounce my-auto"
           src="/images/parking-sign.png"
         />
         <div className="flex flex-wrap bg-slate-800 p-[20px] w-full h-[260px] gap-[20px]">
