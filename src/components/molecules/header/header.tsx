@@ -14,7 +14,7 @@ export const Header = () => {
       <div className="text-2xl">
         Current cash: <span className="font-semibold">{currentCash}</span>
       </div>
-      <img src="/images/logo.png" className="w-[280px]" />
+      <img src="/images/logo.png" className="h-[70px]" />
       <div className="text-2xl">
         Goal cash:{" "}
         <span className="font-semibold">&pound;{goalCash / 1000}k</span>
