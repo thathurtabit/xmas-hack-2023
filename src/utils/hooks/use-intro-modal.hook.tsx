@@ -22,8 +22,29 @@ export const useIntroModal = () => {
     const introModalData: IModalState[] = [
       {
         title: "Welcome to Road to Riches",
+        content: <img src="/images/logo.png" className="w-[280px]" />,
+        isOpen: true,
+        size: "small",
+        footer: {
+          confirm: {
+            text: "Next",
+            icon: <IconGoForward />,
+            onClick: () => setIntroIndex(introIndex + 1),
+          },
+          cancel: {
+            text: "I'm ready!",
+            icon: <IconPlay />,
+            onClick: () => dispatch(setHasUnderstoodIntro(true)),
+          },
+        },
+      },
+      {
+        title: "Getting started",
         content: (
-          <p>The aim is to buy cars for a low price, and sell for high!</p>
+          <p>
+            The aim is to buy cars for a <strong>low</strong> price, and{" "}
+            <strong>sell</strong> for high!
+          </p>
         ),
         isOpen: true,
         size: "small",
@@ -44,8 +65,8 @@ export const useIntroModal = () => {
         title: "Price fluctuation",
         content: (
           <p>
-            The prices will fluctuate up and down; it's up to you to make sure
-            you get the best price possible!
+            The <strong>prices will fluctuate</strong> up and down; it's up to
+            you to make sure you get the best price possible!
           </p>
         ),
         isOpen: true,
@@ -67,9 +88,10 @@ export const useIntroModal = () => {
         title: "Be rich and be quick!",
         content: (
           <p>
-            If you reach the grand total of £{goalCash / 1000}k - you win! But
-            be quick, you've only got{" "}
-            {Math.floor(numberOfDaysUntilGameOver / 360)} years to do it!
+            If you reach the grand total of <strong>£{goalCash / 1000}k</strong>{" "}
+            - you win! But be quick, you've only got{" "}
+            <strong>{Math.floor(numberOfDaysUntilGameOver / 360)} years</strong>{" "}
+            to do it!
           </p>
         ),
         isOpen: true,
