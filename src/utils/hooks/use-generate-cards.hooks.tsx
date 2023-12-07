@@ -38,7 +38,7 @@ export const useGenerateCards = () => {
             id: Math.floor(Math.random() * 100) * (starting * 1.1),
             starting,
             price: starting,
-            image: `images/cars/car${randomNumberRange(1, 10)}.png`,
+            image: `images/cars/car${randomNumberRange(1, 9)}.png`,
             max: Math.floor(starting * priceChangeMultiplierUPPER),
             min: Math.floor(starting * priceChangeMultiplierLOWER),
           });
